@@ -1,0 +1,514 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1600</width>
+    <height>900</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+   </font>
+  </property>
+  <property name="mouseTracking">
+   <bool>true</bool>
+  </property>
+  <property name="windowTitle">
+   <string>GCode</string>
+  </property>
+  <property name="dockNestingEnabled">
+   <bool>true</bool>
+  </property>
+  <property name="dockOptions">
+   <set>QMainWindow::AllowNestedDocks|QMainWindow::AllowTabbedDocks|QMainWindow::AnimatedDocks</set>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
+   <layout class="QGridLayout" name="gridLayout">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <property name="topMargin">
+     <number>0</number>
+    </property>
+    <property name="rightMargin">
+     <number>0</number>
+    </property>
+    <property name="bottomMargin">
+     <number>0</number>
+    </property>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1600</width>
+     <height>26</height>
+    </rect>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <property name="nativeMenuBar">
+    <bool>true</bool>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>文件(&amp;F)</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="actionRecent"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSaveAll"/>
+    <addaction name="actionSaveAs"/>
+    <addaction name="separator"/>
+    <addaction name="actionClose"/>
+    <addaction name="actionCloseAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>编辑(&amp;E)</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="actionDelete"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelectAll"/>
+    <addaction name="separator"/>
+    <addaction name="actionFindReplace"/>
+   </widget>
+   <widget class="QMenu" name="menuBuild">
+    <property name="title">
+     <string>构建(&amp;B)</string>
+    </property>
+    <addaction name="actionComplile"/>
+    <addaction name="actionRun"/>
+    <addaction name="separator"/>
+    <addaction name="actionDebug"/>
+    <addaction name="actionStop"/>
+   </widget>
+   <widget class="QMenu" name="menuTool">
+    <property name="title">
+     <string>工具(&amp;T)</string>
+    </property>
+    <addaction name="actionOption"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>帮助(&amp;H)</string>
+    </property>
+    <addaction name="actionAboutThis"/>
+    <addaction name="actionAboutUs"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuBuild"/>
+   <addaction name="menuTool"/>
+   <addaction name="menuHelp"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar">
+   <property name="statusTip">
+    <string>准备就绪</string>
+   </property>
+  </widget>
+  <widget class="QDockWidget" name="FileListDock">
+   <property name="minimumSize">
+    <size>
+     <width>109</width>
+     <height>139</height>
+    </size>
+   </property>
+   <property name="floating">
+    <bool>false</bool>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>工作区目录</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QGridLayout" name="gridLayout_2">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QTreeWidget" name="FileTree">
+       <column>
+        <property name="text">
+         <string notr="true">1</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="EditorDock">
+   <property name="minimumSize">
+    <size>
+     <width>229</width>
+     <height>173</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::RightDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>编辑器</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_3">
+    <layout class="QGridLayout" name="gridLayout_3">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QTabWidget" name="tabWidget">
+       <property name="elideMode">
+        <enum>Qt::ElideNone</enum>
+       </property>
+       <property name="documentMode">
+        <bool>true</bool>
+       </property>
+       <property name="tabsClosable">
+        <bool>true</bool>
+       </property>
+       <property name="tabBarAutoHide">
+        <bool>false</bool>
+       </property>
+       <widget class="QWidget" name="codeView">
+        <attribute name="title">
+         <string>空文件</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_7">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QTextEdit" name="codeEditor"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="ConsoleDock">
+   <property name="minimumSize">
+    <size>
+     <width>157</width>
+     <height>173</height>
+    </size>
+   </property>
+   <property name="features">
+    <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::BottomDockWidgetArea</set>
+   </property>
+   <property name="windowTitle">
+    <string>控制台</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_4">
+    <layout class="QGridLayout" name="gridLayout_4">
+     <property name="leftMargin">
+      <number>0</number>
+     </property>
+     <property name="topMargin">
+      <number>0</number>
+     </property>
+     <property name="rightMargin">
+      <number>0</number>
+     </property>
+     <property name="bottomMargin">
+      <number>0</number>
+     </property>
+     <item row="0" column="0">
+      <widget class="QTabWidget" name="cosoleTab">
+       <property name="tabPosition">
+        <enum>QTabWidget::South</enum>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <property name="documentMode">
+        <bool>false</bool>
+       </property>
+       <widget class="QWidget" name="IOTab">
+        <attribute name="title">
+         <string>输入/输出</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_5">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QTextEdit" name="IOEditor"/>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="errorTab">
+        <attribute name="title">
+         <string>错误信息</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_6">
+         <property name="leftMargin">
+          <number>0</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item row="0" column="0">
+          <widget class="QTextBrowser" name="errorBrowser"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionNew">
+   <property name="text">
+    <string>新建文件(&amp;N)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="text">
+    <string>打开文件(&amp;O)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionRecent">
+   <property name="text">
+    <string>最近打开</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>保存(&amp;S)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAll">
+   <property name="text">
+    <string>保存所有</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionSaveAs">
+   <property name="text">
+    <string>另存为</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>关闭文件</string>
+   </property>
+  </action>
+  <action name="actionCloseAll">
+   <property name="text">
+    <string>关闭所有</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="text">
+    <string>退出(&amp;X)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="text">
+    <string>撤销</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="text">
+    <string>恢复</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="text">
+    <string>剪切(&amp;T)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="text">
+    <string>复制(&amp;C)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="text">
+    <string>粘贴(&amp;P)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>删除(&amp;D)</string>
+   </property>
+  </action>
+  <action name="actionSelectAll">
+   <property name="text">
+    <string>全选(&amp;A)</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionFindReplace">
+   <property name="text">
+    <string>查找/替换...</string>
+   </property>
+  </action>
+  <action name="actionComplile">
+   <property name="text">
+    <string>编译</string>
+   </property>
+   <property name="shortcut">
+    <string>F9</string>
+   </property>
+  </action>
+  <action name="actionRun">
+   <property name="text">
+    <string>运行</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionDebug">
+   <property name="text">
+    <string>调试</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
+   </property>
+  </action>
+  <action name="actionStop">
+   <property name="text">
+    <string>终止</string>
+   </property>
+   <property name="shortcut">
+    <string>F6</string>
+   </property>
+  </action>
+  <action name="actionOption">
+   <property name="text">
+    <string>选项(&amp;O)...</string>
+   </property>
+  </action>
+  <action name="actionAboutThis">
+   <property name="text">
+    <string>关于软件...</string>
+   </property>
+  </action>
+  <action name="actionAboutUs">
+   <property name="text">
+    <string>关于我们...</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
