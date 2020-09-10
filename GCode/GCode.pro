@@ -16,19 +16,29 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    TestDialog.cpp \
+    Slide.cpp \
     main.cpp \
     MainWindow.cpp
 
 HEADERS += \
     MainWindow.h \
-    TestDialog.h
+    Slide.h
 
 FORMS += \
     MainWindow.ui \
-    TestDialog.ui
+    Slide.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES += \
+    stylesheets/MainWindowD.qss \
+    stylesheets/MainWindowL.qss \
+    stylesheets/PushButtonD.qss \
+    stylesheets/PushButtonL.qss
+
+RESOURCES += \
+    icons.qrc \
+    stylesheets.qrc

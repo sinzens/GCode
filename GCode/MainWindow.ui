@@ -44,9 +44,127 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
+    <item row="1" column="1">
+     <widget class="QToolButton" name="editMenuButton">
+      <property name="text">
+       <string>编辑(&amp;E)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+E</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QToolButton" name="buildMenuButton">
+      <property name="text">
+       <string>构建(&amp;B)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+B</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QToolButton" name="toolMenuButton">
+      <property name="text">
+       <string>工具(&amp;T)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+T</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QToolButton" name="helpMenuButton">
+      <property name="text">
+       <string>帮助(&amp;H)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+H</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QToolButton" name="fileMenuButton">
+      <property name="text">
+       <string>文件(&amp;F)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+F</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QToolButton" name="minButton">
+      <property name="minimumSize">
+       <size>
+        <width>67</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/minH.png</normaloff>:/icons/minH.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>47</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <widget class="QToolButton" name="switchButton">
+      <property name="minimumSize">
+       <size>
+        <width>67</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>47</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QToolButton" name="closeButton">
+      <property name="minimumSize">
+       <size>
+        <width>67</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/closeH.png</normaloff>:/icons/closeH.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>47</width>
+        <height>20</height>
+       </size>
+      </property>
+     </widget>
+    </item>
    </layout>
   </widget>
   <widget class="QMenuBar" name="menubar">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="geometry">
     <rect>
      <x>0</x>
@@ -124,6 +242,9 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
    <property name="statusTip">
     <string>准备就绪</string>
    </property>
@@ -343,6 +464,49 @@
     </layout>
    </widget>
   </widget>
+  <widget class="QToolBar" name="titleBar">
+   <property name="mouseTracking">
+    <bool>true</bool>
+   </property>
+   <property name="windowTitle">
+    <string>toolBar</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::TopToolBarArea</set>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
+  <widget class="QToolBar" name="leftToolBar">
+   <property name="windowTitle">
+    <string>toolBar_2</string>
+   </property>
+   <property name="movable">
+    <bool>false</bool>
+   </property>
+   <property name="allowedAreas">
+    <set>Qt::LeftToolBarArea</set>
+   </property>
+   <property name="floatable">
+    <bool>false</bool>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>LeftToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+  </widget>
   <action name="actionNew">
    <property name="text">
     <string>新建文件(&amp;N)</string>
@@ -509,6 +673,140 @@
    </property>
   </action>
  </widget>
- <resources/>
- <connections/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>fileMenuButton</sender>
+   <signal>clicked()</signal>
+   <receiver>fileMenuButton</receiver>
+   <slot>showMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>974</x>
+     <y>122</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>974</x>
+     <y>122</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editMenuButton</sender>
+   <signal>clicked()</signal>
+   <receiver>editMenuButton</receiver>
+   <slot>showMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>974</x>
+     <y>225</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>974</x>
+     <y>225</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buildMenuButton</sender>
+   <signal>clicked()</signal>
+   <receiver>buildMenuButton</receiver>
+   <slot>showMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>974</x>
+     <y>328</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>974</x>
+     <y>328</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>toolMenuButton</sender>
+   <signal>clicked()</signal>
+   <receiver>toolMenuButton</receiver>
+   <slot>showMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>974</x>
+     <y>431</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>974</x>
+     <y>431</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>helpMenuButton</sender>
+   <signal>clicked()</signal>
+   <receiver>helpMenuButton</receiver>
+   <slot>showMenu()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>976</x>
+     <y>534</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>976</x>
+     <y>534</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>minButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showMinimized()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>591</x>
+     <y>123</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>477</x>
+     <y>145</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>closeButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>594</x>
+     <y>327</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>455</x>
+     <y>350</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>switchButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>switchStatus()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>596</x>
+     <y>225</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>427</x>
+     <y>245</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>switchStatus()</slot>
+ </slots>
 </ui>
