@@ -16,16 +16,19 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    OptionWindow.cpp \
     Slide.cpp \
     main.cpp \
     MainWindow.cpp
 
 HEADERS += \
     MainWindow.h \
+    OptionWindow.h \
     Slide.h
 
 FORMS += \
     MainWindow.ui \
+    OptionWindow.ui \
     Slide.ui
 
 # Default rules for deployment.
@@ -36,7 +39,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 DISTFILES += \
     stylesheets/MainWindowD.qss \
     stylesheets/MainWindowL.qss \
-    stylesheets/PushButtonD.qss \
     stylesheets/PushButtonL.qss
 
 RESOURCES += \

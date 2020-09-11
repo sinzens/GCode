@@ -10,8 +10,29 @@
     <height>400</height>
    </rect>
   </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+   </font>
+  </property>
   <property name="windowTitle">
    <string>Form</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">QWidget#Slide
+{
+	background-image: url(:/icons/slideBg.png);
+}
+QLabel#slideLabel
+{
+	background-image: url(:/icons/slideBg.png);
+}</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <property name="leftMargin">
@@ -31,6 +52,12 @@
    </property>
    <item row="0" column="0">
     <widget class="QLabel" name="slideLabel">
+     <property name="sizePolicy">
+      <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+       <horstretch>0</horstretch>
+       <verstretch>0</verstretch>
+      </sizepolicy>
+     </property>
      <property name="text">
       <string/>
      </property>
@@ -38,6 +65,31 @@
    </item>
    <item row="1" column="0">
     <widget class="QProgressBar" name="progressBar">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>20</height>
+      </size>
+     </property>
+     <property name="font">
+      <font>
+       <family>微软雅黑</family>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true">QProgressBar
+{
+	border: 1px solid black;
+	background-color: rgb(239, 239, 239);
+	text-align:center;
+}
+
+QProgressBar::chunk
+{
+	background-color: rgb(0, 255, 0);
+	margin:2px;
+}</string>
+     </property>
      <property name="value">
       <number>0</number>
      </property>

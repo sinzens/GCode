@@ -44,56 +44,6 @@
     <property name="bottomMargin">
      <number>0</number>
     </property>
-    <item row="1" column="1">
-     <widget class="QToolButton" name="editMenuButton">
-      <property name="text">
-       <string>编辑(&amp;E)</string>
-      </property>
-      <property name="shortcut">
-       <string>Alt+E</string>
-      </property>
-     </widget>
-    </item>
-    <item row="2" column="1">
-     <widget class="QToolButton" name="buildMenuButton">
-      <property name="text">
-       <string>构建(&amp;B)</string>
-      </property>
-      <property name="shortcut">
-       <string>Alt+B</string>
-      </property>
-     </widget>
-    </item>
-    <item row="3" column="1">
-     <widget class="QToolButton" name="toolMenuButton">
-      <property name="text">
-       <string>工具(&amp;T)</string>
-      </property>
-      <property name="shortcut">
-       <string>Alt+T</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1">
-     <widget class="QToolButton" name="helpMenuButton">
-      <property name="text">
-       <string>帮助(&amp;H)</string>
-      </property>
-      <property name="shortcut">
-       <string>Alt+H</string>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="1">
-     <widget class="QToolButton" name="fileMenuButton">
-      <property name="text">
-       <string>文件(&amp;F)</string>
-      </property>
-      <property name="shortcut">
-       <string>Alt+F</string>
-      </property>
-     </widget>
-    </item>
     <item row="0" column="0">
      <widget class="QToolButton" name="minButton">
       <property name="minimumSize">
@@ -136,6 +86,73 @@
       </property>
      </widget>
     </item>
+    <item row="5" column="1">
+     <widget class="QToolButton" name="saveAsButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>另存为</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/save_asD.png</normaloff>:/icons/save_asD.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QToolButton" name="runButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>运行(Ctrl+R)</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/runD.png</normaloff>:/icons/runD.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2">
+     <widget class="QToolButton" name="helpMenuButton">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>帮助(&amp;H)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+H</string>
+      </property>
+     </widget>
+    </item>
     <item row="2" column="0">
      <widget class="QToolButton" name="closeButton">
       <property name="minimumSize">
@@ -156,6 +173,243 @@
         <width>47</width>
         <height>20</height>
        </size>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="2">
+     <widget class="QToolButton" name="editMenuButton">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>编辑(&amp;E)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+E</string>
+      </property>
+      <property name="autoRaise">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="2">
+     <widget class="QToolButton" name="toolMenuButton">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>工具(&amp;T)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+T</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QToolButton" name="saveAllButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>保存所有(Ctrl+Shift+S)</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/save_allD.png</normaloff>:/icons/save_allD.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QToolButton" name="debugButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>调试(F5)</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/debugD.png</normaloff>:/icons/debugD.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QToolButton" name="buildMenuButton">
+      <property name="font">
+       <font>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>构建(&amp;B)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+B</string>
+      </property>
+      <property name="autoRaise">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="5" column="0">
+     <widget class="QToolButton" name="stopButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>终止(F6)</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/stopD.png</normaloff>:/icons/stopD.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="2">
+     <widget class="QToolButton" name="fileMenuButton">
+      <property name="font">
+       <font>
+        <family>微软雅黑</family>
+        <pointsize>10</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>文件(&amp;F)</string>
+      </property>
+      <property name="shortcut">
+       <string>Alt+F</string>
+      </property>
+      <property name="autoRaise">
+       <bool>false</bool>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QToolButton" name="saveButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>保存文件(Ctrl+S)</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/saveD.png</normaloff>:/icons/saveD.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QToolButton" name="openButton">
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>60</height>
+       </size>
+      </property>
+      <property name="toolTip">
+       <string>打开文件(Ctrl+O)</string>
+      </property>
+      <property name="text">
+       <string>...</string>
+      </property>
+      <property name="icon">
+       <iconset resource="icons.qrc">
+        <normaloff>:/icons/openD.png</normaloff>:/icons/openD.png</iconset>
+      </property>
+      <property name="iconSize">
+       <size>
+        <width>40</width>
+        <height>40</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="iconLabel">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>40</width>
+        <height>20</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="icons.qrc">:/icons/Gicon.png</pixmap>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+      </property>
+      <property name="margin">
+       <number>0</number>
       </property>
      </widget>
     </item>
@@ -180,6 +434,18 @@
     <bool>true</bool>
    </property>
    <widget class="QMenu" name="menuFile">
+    <property name="minimumSize">
+     <size>
+      <width>250</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>文件(&amp;F)</string>
     </property>
@@ -197,6 +463,18 @@
     <addaction name="actionExit"/>
    </widget>
    <widget class="QMenu" name="menuEdit">
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>编辑(&amp;E)</string>
     </property>
@@ -213,6 +491,18 @@
     <addaction name="actionFindReplace"/>
    </widget>
    <widget class="QMenu" name="menuBuild">
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>构建(&amp;B)</string>
     </property>
@@ -223,12 +513,36 @@
     <addaction name="actionStop"/>
    </widget>
    <widget class="QMenu" name="menuTool">
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>工具(&amp;T)</string>
     </property>
     <addaction name="actionOption"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
+    <property name="minimumSize">
+     <size>
+      <width>200</width>
+      <height>0</height>
+     </size>
+    </property>
+    <property name="font">
+     <font>
+      <family>微软雅黑</family>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
     <property name="title">
      <string>帮助(&amp;H)</string>
     </property>
@@ -242,6 +556,12 @@
    <addaction name="menuHelp"/>
   </widget>
   <widget class="QStatusBar" name="statusbar">
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="mouseTracking">
     <bool>true</bool>
    </property>
@@ -255,6 +575,13 @@
      <width>109</width>
      <height>139</height>
     </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="floating">
     <bool>false</bool>
@@ -286,12 +613,103 @@
       <number>0</number>
      </property>
      <item row="0" column="0">
-      <widget class="QTreeWidget" name="FileTree">
+      <widget class="QTreeWidget" name="fileTree">
+       <property name="font">
+        <font>
+         <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+         <weight>75</weight>
+         <bold>true</bold>
+        </font>
+       </property>
        <column>
         <property name="text">
-         <string notr="true">1</string>
+         <string>文件列表</string>
+        </property>
+        <property name="textAlignment">
+         <set>AlignCenter</set>
         </property>
        </column>
+       <item>
+        <property name="text">
+         <string>TestProject</string>
+        </property>
+        <item>
+         <property name="text">
+          <string>headers</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>test1.h</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>test2.h</string>
+          </property>
+         </item>
+        </item>
+        <item>
+         <property name="text">
+          <string>sources</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>main.c</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>test1.c</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>test2.c</string>
+          </property>
+         </item>
+        </item>
+        <item>
+         <property name="text">
+          <string>resources</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>picture1.png</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>picture2.png</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>icon.ico</string>
+          </property>
+         </item>
+        </item>
+        <item>
+         <property name="text">
+          <string>others</string>
+         </property>
+         <item>
+          <property name="text">
+           <string>config.ini</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>setting.json</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>text.xml</string>
+          </property>
+         </item>
+        </item>
+       </item>
       </widget>
      </item>
     </layout>
@@ -303,6 +721,13 @@
      <width>229</width>
      <height>173</height>
     </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="features">
     <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
@@ -317,6 +742,9 @@
     <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents_3">
+    <property name="enabled">
+     <bool>true</bool>
+    </property>
     <layout class="QGridLayout" name="gridLayout_3">
      <property name="leftMargin">
       <number>0</number>
@@ -330,15 +758,34 @@
      <property name="bottomMargin">
       <number>0</number>
      </property>
+     <property name="spacing">
+      <number>0</number>
+     </property>
      <item row="0" column="0">
-      <widget class="QTabWidget" name="tabWidget">
+      <widget class="QTabWidget" name="editorTab">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
        <property name="elideMode">
         <enum>Qt::ElideNone</enum>
        </property>
        <property name="documentMode">
-        <bool>true</bool>
+        <bool>false</bool>
        </property>
        <property name="tabsClosable">
+        <bool>true</bool>
+       </property>
+       <property name="movable">
         <bool>true</bool>
        </property>
        <property name="tabBarAutoHide">
@@ -362,9 +809,27 @@
           <number>0</number>
          </property>
          <item row="0" column="0">
-          <widget class="QTextEdit" name="codeEditor"/>
+          <widget class="QTextEdit" name="codeEditor">
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
+           <property name="lineWrapMode">
+            <enum>QTextEdit::NoWrap</enum>
+           </property>
+           <property name="tabStopDistance">
+            <double>40.000000000000000</double>
+           </property>
+          </widget>
          </item>
         </layout>
+       </widget>
+       <widget class="QWidget" name="tab">
+        <attribute name="title">
+         <string>页</string>
+        </attribute>
        </widget>
       </widget>
      </item>
@@ -377,6 +842,13 @@
      <width>157</width>
      <height>173</height>
     </size>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <property name="features">
     <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
@@ -406,6 +878,13 @@
      </property>
      <item row="0" column="0">
       <widget class="QTabWidget" name="cosoleTab">
+       <property name="font">
+        <font>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
        <property name="tabPosition">
         <enum>QTabWidget::South</enum>
        </property>
@@ -433,7 +912,14 @@
           <number>0</number>
          </property>
          <item row="0" column="0">
-          <widget class="QTextEdit" name="IOEditor"/>
+          <widget class="QTextEdit" name="IOEditor">
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -465,6 +951,13 @@
    </widget>
   </widget>
   <widget class="QToolBar" name="titleBar">
+   <property name="font">
+    <font>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
+   </property>
    <property name="mouseTracking">
     <bool>true</bool>
    </property>
@@ -511,6 +1004,12 @@
    <property name="text">
     <string>新建文件(&amp;N)</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+N</string>
    </property>
@@ -518,6 +1017,12 @@
   <action name="actionOpen">
    <property name="text">
     <string>打开文件(&amp;O)</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+O</string>
@@ -527,10 +1032,22 @@
    <property name="text">
     <string>最近打开</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionSave">
    <property name="text">
     <string>保存(&amp;S)</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+S</string>
@@ -540,6 +1057,12 @@
    <property name="text">
     <string>保存所有</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Shift+S</string>
    </property>
@@ -548,20 +1071,44 @@
    <property name="text">
     <string>另存为</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionClose">
    <property name="text">
     <string>关闭文件</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
   <action name="actionCloseAll">
    <property name="text">
     <string>关闭所有</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionExit">
    <property name="text">
     <string>退出(&amp;X)</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Q</string>
@@ -805,8 +1352,42 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>editorTab</sender>
+   <signal>tabCloseRequested(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>removeTab(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1468</x>
+     <y>340</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOption</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showOption()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>switchStatus()</slot>
+  <slot>removeTab(int)</slot>
+  <slot>showOption()</slot>
  </slots>
 </ui>

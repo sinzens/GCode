@@ -4,5 +4,45 @@
         <file>icons/maxH.png</file>
         <file>icons/minH.png</file>
         <file>icons/resH.png</file>
+        <file>icons/runIcon_p.ico</file>
+        <file>icons/runIcon_r.ico</file>
+        <file>icons/runIcon_y.ico</file>
+        <file>icons/stopIcon_r.png</file>
+        <file>icons/closeH_D.png</file>
+        <file>icons/maxH_D.png</file>
+        <file>icons/minH_D.png</file>
+        <file>icons/resH_D.png</file>
+        <file>icons/openD.png</file>
+        <file>icons/saveD.png</file>
+        <file>icons/open.png</file>
+        <file>icons/save.png</file>
+        <file>icons/save_all.png</file>
+        <file>icons/save_as.png</file>
+        <file>icons/save_allD.png</file>
+        <file>icons/save_asD.png</file>
+        <file>icons/Gicon.png</file>
+        <file>icons/slideBg.png</file>
+        <file>icons/arrow_down.png</file>
+        <file>icons/arrow_downD.png</file>
+        <file>icons/arrow_left.png</file>
+        <file>icons/arrow_leftD.png</file>
+        <file>icons/arrow_right.png</file>
+        <file>icons/arrow_rightD.png</file>
+        <file>icons/arrow_up.png</file>
+        <file>icons/arrow_upD.png</file>
+        <file>icons/branch_end.png</file>
+        <file>icons/branch_endD.png</file>
+        <file>icons/branch_more.png</file>
+        <file>icons/branch_moreD.png</file>
+        <file>icons/vline.png</file>
+        <file>icons/vlineD.png</file>
+        <file>icons/debug.png</file>
+        <file>icons/debugD.png</file>
+        <file>icons/run.png</file>
+        <file>icons/runD.png</file>
+        <file>icons/stop.png</file>
+        <file>icons/stopD.png</file>
+        <file>icons/closeH_high.png</file>
+        <file>icons/closeH_high_D.png</file>
     </qresource>
 </RCC>

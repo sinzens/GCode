@@ -3,23 +3,17 @@
 
 #include <QMainWindow>
 
-typedef void doNothing;
-
 enum UiStyle
 {
     LightTheme,
     DarkTheme
 };
 
-struct StyleTheme
-{
-    UiStyle theme;
-    QStringList stylesheetList;
-};
-
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
+
+class Slide;
 
 class MainWindow : public QMainWindow
 {
@@ -28,8 +22,10 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow() Q_DECL_OVERRIDE;
+    void slideProcess(Slide* slide);
     inline void initDockWidget();
     inline void initMenuBar();
+    inline void initToolBar();
     inline void initWindowStatus();
     inline void initMouseStatus();
     inline void initEventFilter();
@@ -43,11 +39,13 @@ protected:
 
 protected slots:
     void switchStatus();
+    void removeTab(int index);
+    void showOption();
 
 private:
     Ui::MainWindow* ui;
 
-    StyleTheme styleTheme;
+    UiStyle styleTheme;
 
     bool mouseDrag;
     QPoint mousePos;

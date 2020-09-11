@@ -2,47 +2,66 @@
 #include "ui_MainWindow.h"
 
 #include "Slide.h"
+#include "OptionWindow.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
 #include <QDebug>
 #include <QFile>
-#include <QThread>
 #include <QTimer>
+
+typedef void doNothing;
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    Slide slide;
+    /*Slide slide;
     slide.show();
+    slideProcess(&slide);*/
     ui->setupUi(this);
-    slide.progressAdd(40);
-    delayToShow(500);
     this->setWindowFlags(Qt::FramelessWindowHint);
     initDockWidget();
-    slide.progressAdd(10);
-    delayToShow(250);
     initMenuBar();
-    slide.progressAdd(10);
-    delayToShow(250);
+    initToolBar();
     initWindowStatus();
-    slide.progressAdd(10);
-    delayToShow(250);
     initMouseStatus();
-    slide.progressAdd(10);
-    delayToShow(100);
     initEventFilter();
-    slide.progressAdd(10);
-    delayToShow(100);
     initStylesheet();
-    slide.progressAdd(10);
-    delayToShow(1000);
 }
 
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::slideProcess(Slide* slide)
+{
+    const int slideTime = 7;
+
+    for(int i = 1; i <= slideTime; i++)
+    {
+        if(i == 1)
+        {
+            slide->progressAdd(40);
+            delayToShow(500);
+        }
+        else if(i <= 4)
+        {
+            slide->progressAdd(10);
+            delayToShow(250);
+        }
+        else if(i <= 6)
+        {
+            slide->progressAdd(10);
+            delayToShow(100);
+        }
+        else
+        {
+            slide->progressAdd(10);
+            delayToShow(2000);
+        }
+    }
 }
 
 void MainWindow::initDockWidget()
@@ -58,6 +77,8 @@ void MainWindow::initDockWidget()
 void MainWindow::initMenuBar()
 {
     ui->menubar->setVisible(false);
+
+    ui->titleBar->addWidget(ui->iconLabel);
 
     QVector<QMenu*> menuList;
     QVector<QToolButton*> menuButtonList;
@@ -90,6 +111,22 @@ void MainWindow::initMenuBar()
     ui->titleBar->addWidget(ui->closeButton);
 }
 
+void MainWindow::initToolBar()
+{
+    ui->leftToolBar->addWidget(ui->openButton);
+    ui->leftToolBar->addWidget(ui->saveButton);
+    ui->leftToolBar->addWidget(ui->saveAsButton);
+    ui->leftToolBar->addWidget(ui->saveAllButton);
+
+    QWidget* spacer = new QWidget(this);
+    spacer->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+    ui->leftToolBar->addWidget(spacer);
+
+    ui->leftToolBar->addWidget(ui->runButton);
+    ui->leftToolBar->addWidget(ui->debugButton);
+    ui->leftToolBar->addWidget(ui->stopButton);
+}
+
 void MainWindow::initWindowStatus()
 {
     switch(this->windowState())
@@ -118,24 +155,15 @@ void MainWindow::initEventFilter()
 
 void MainWindow::initStylesheet()
 {
-    this->styleTheme.theme = DarkTheme;
+    this->styleTheme = DarkTheme;
 
-    QVector<QFile> qssList;
-    /*qssList << QFile(":/dark/stylesheets/MainWindowD.qss")
-            << QFile(":/dark/stylesheets/PushButtonD.qss");*/
-    QFile file1(":/dark/stylesheets/MainWindowD.qss");
-
-    /*for(QFile & qssFile : qssList)
+    if(this->styleTheme == DarkTheme)
     {
+        QFile qssFile(":/dark/stylesheets/MainWindowD.qss");
         qssFile.open(QFile::ReadOnly);
-        this->styleTheme.stylesheetList << qssFile.readAll();
+        this->setStyleSheet(qssFile.readAll());
         qssFile.close();
     }
-
-    for(QString & style : this->styleTheme.stylesheetList)
-    {
-        qDebug() << style;
-    }*/
 }
 
 void MainWindow::delayToShow(int mesc)
@@ -248,5 +276,16 @@ void MainWindow::switchStatus()
         ui->switchButton->setIcon(QIcon("://icons/resH.png"));
         break;
     }
+}
+
+void MainWindow::removeTab(int index)
+{
+    ui->editorTab->removeTab(index);
+}
+
+void MainWindow::showOption()
+{
+    OptionWindow* optionWindow = new OptionWindow(this);
+    optionWindow->show();
 }
 

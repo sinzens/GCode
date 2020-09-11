@@ -1,4 +1,372 @@
-.QMainWindow
+QMainWindow
 {
-    background-color: rgb(0, 10, 10);
+    background-color: rgb(60, 60, 60);
 }
+
+QSplitter::handle
+{
+    background-color: rgb(60, 60, 60);
+}
+
+QStatusBar
+{
+    background-color: rgb(163, 9, 172);
+    color: white;
+}
+
+QLabel
+{
+    color: white;
+}
+
+QLabel#iconLabel
+{
+    margin: 0px 10px 0px 10px;
+}
+
+QPushButton
+{
+    background-color: rgb(120, 120, 120);
+    color: white;
+    border: 0;
+    padding: 5px 40px 5px 40px;
+}
+
+QPushButton:hover
+{
+    background-color: rgb(100, 100, 100);
+}
+
+QPushButton:pressed
+{
+    background-color: rgb(80, 80, 80);
+}
+
+QToolBar
+{
+    border: 0;
+    background-color: rgb(50, 50, 50);
+}
+
+QToolButton
+{
+    padding: 5px 15px 5px 15px;
+    color: white;
+    background-color: rgb(50, 50, 50);
+    border: 0;
+}
+
+QToolButton:hover
+{
+    background-color: rgb(90, 90, 90);
+}
+
+QToolButton::menu-button
+{
+    border: 0;
+    width: 0;
+}
+
+QToolButton::menu-arrow
+{
+    image: none;
+    border: 0;
+    width: 0;
+}
+
+QToolButton::menu-arrow:open
+{
+    top: 1px;
+    left: 1px;
+}
+
+QToolBar#titleBar QToolButton:hover
+{
+    background-color: rgb(90, 90, 90);
+    border-top: 1px;
+    border-left: 1px;
+    border-bottom: 0px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: rgb(50, 50, 50);
+}
+
+QToolBar#titleBar QToolButton:pressed
+{
+    background-color: rgb(90, 90, 90);
+    border-top: 1px;
+    border-left: 1px;
+    border-bottom: 0px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: rgb(50, 50, 50);
+}
+
+QToolBar#titleBar QToolButton#closeButton:hover
+{
+    background-color: rgb(90, 90, 90);
+    border: 0;
+}
+
+QToolBar#titleBar QToolButton#closeButton:pressed
+{
+    background-color: rgb(70, 70, 70);
+    border: 0;
+}
+
+QToolBar#titleBar QToolButton#minButton:hover
+{
+    background-color: rgb(90, 90, 90);
+    border: 0;
+}
+
+QToolBar#titleBar QToolButton#minButton:pressed
+{
+    background-color: rgb(70, 70, 70);
+    border: 0;
+}
+
+QToolBar#titleBar QToolButton#switchButton:hover
+{
+    background-color: rgb(90, 90, 90);
+    border: 0;
+}
+
+QToolBar#titleBar QToolButton#switchButton:pressed
+{
+    background-color: rgb(70, 70, 70);
+    border: 0;
+}
+
+QToolBar#leftToolBar QToolButton:pressed
+{
+    background-color: rgb(70, 70, 70);
+}
+
+QMenu
+{
+    background-color: rgb(90, 90, 90);
+    border-top: 0px;
+    border-left: 1px;
+    border-bottom: 1px;
+    border-right: 1px;
+    border-style: solid;
+    border-color: rgb(50, 50, 50);
+}
+
+QMenu::item
+{
+    background-color: transparent;
+    color: white;
+    padding: 7px 15px 7px 15px;
+}
+
+QMenu::item:selected
+{
+    background-color: rgb(50, 50, 50);
+}
+
+QDockWidget
+{
+    titlebar-close-icon: url(://icons/closeH.png);
+    color: white;
+}
+
+QDockWidget::title
+{
+    background-color: rgb(60, 60, 60);
+    padding: 5px 5px 5px 5px;
+}
+
+QDockWidget::close-button
+{
+    background-color: rgb(60, 60, 60);
+    border: 0;
+}
+
+QDockWidget::close-button:hover
+{
+    background-color: rgb(90, 90, 90);
+}
+
+QDockWidget::close-button:pressed
+{
+    background-color: rgb(120, 120, 120);
+}
+
+QTreeWidget
+{
+    show-decoration-selected: 0;
+    alternate-background-color: rgb(80, 80, 80);
+    background-color :rgb(80, 80, 80);
+    color: white;
+    border: 0;
+    outline: 0;
+}
+
+QHeaderView
+{
+    color: white;
+}
+
+QHeaderView::section
+{
+    background-color: rgb(80, 80, 80);
+    border: 0;
+}
+
+QTreeWidget::item
+{
+    background-color: rgb(80, 80, 80);
+}
+
+QTreeWidget::item:hover
+{
+    background-color: rgb(120, 120, 120);
+    border: 0;
+}
+
+QTreeWidget::item:selected
+{
+    background-color: rgb(120, 120, 120);
+    border: 0;
+}
+
+QTreeWidget::item:selected:active
+{
+    background-color: rgb(120, 120, 120);
+    border: 0;
+}
+
+QTreeWidget::item:selected:!active
+{
+    background-color: rgb(120, 120, 120);
+    border: 0;
+}
+
+QTreeWidget::branch:has-siblings:!adjoins-item
+{
+    border-image: url(://icons/vlineD.png) 0;
+}
+
+QTreeWidget::branch:has-siblings:adjoins-item
+{
+    border-image: url(://icons/branch_moreD.png) 0;
+}
+
+QTreeWidget::branch:!has-children:!has-siblings:adjoins-item
+{
+    border-image: url(://icons/branch_endD.png) 0;
+}
+
+QTreeWidget::branch:has-children:!has-siblings:closed,
+QTreeWidget::branch:closed:has-children:has-siblings
+{
+    border-image: none;
+    image: url(://icons/arrow_rightD.png);
+}
+
+QTreeWidget::branch:open:has-children:!has-siblings,
+QTreeWidget::branch:open:has-children:has-siblings
+{
+    border-image: none;
+    image: url(://icons/arrow_downD.png);
+}
+
+QTabWidget::pane
+{
+    border: 0;
+}
+
+QTabBar::tab
+{
+    border: 0;
+    background-color: rgb(80, 80, 80);
+    color: white;
+    min-width: 150px;
+    padding: 5px 10px 5px 10px;
+}
+
+QTabBar::tab:hover
+{
+    background-color: rgb(100, 100, 100);
+}
+
+QTabBar::tab:selected
+{
+    background-color: rgb(120, 120, 120);
+}
+
+QTabBar::tab:!selected
+{
+
+}
+
+QTabBar::close-button
+{
+    image: url(://icons/closeH.png);
+}
+
+QTabBar::close-button:hover
+{
+    image: url(://icons/closeH_high.png);
+}
+
+QTabBar::close-button:pressed
+{
+    image: url(://icons/closeH_high.png);
+}
+
+QTextEdit
+{
+    background-color: rgb(100, 100, 100);
+    color: white;
+    border: 0;
+}
+
+QComboBox
+{
+    background-color: rgb(100, 100, 100);
+    border: 1px solid black;
+    color: white;
+}
+
+QComboBox:hover
+{
+    border: 2px solid grey;
+    background-color: rgb(120, 120, 120);
+}
+
+QComboBox:on
+{
+    border: 2px solid grey;
+    background-color: rgb(120, 120, 120);
+}
+
+QComboBox::drop-down
+{
+    border: 0;
+}
+
+QComboBox::down-arrow
+{
+    image: url(://icons/arrow_leftD.png);
+}
+
+QComboBox::down-arrow:on
+{
+    image: url(://icons/arrow_downD.png);
+}
+
+QComboBox QAbstractItemView
+{
+    background-color: rgb(90, 90, 90);
+    border: 2px solid grey;
+}
+
+QComboBox QAbstractItemView::item
+{
+
+    padding: 5px 10px 5px 10px;
+}
+
