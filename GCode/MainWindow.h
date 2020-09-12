@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSettings>
 
 enum UiStyle
 {
@@ -29,8 +30,14 @@ public:
     inline void initWindowStatus();
     inline void initMouseStatus();
     inline void initEventFilter();
+    inline void initSetting();
     inline void initStylesheet();
     inline void delayToShow(int mesc);
+    void changeEditorFont(QFont font);
+    void changeCompilerPath(QString path);
+    void changeThemeTo(UiStyle theme);
+    UiStyle theme();
+    QSettings* settings();
 
 protected:
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
@@ -41,13 +48,20 @@ protected slots:
     void switchStatus();
     void removeTab(int index);
     void showOption();
+    void showFindReplace();
+    void showAboutThis();
+    void showAboutUs();
 
 private:
     Ui::MainWindow* ui;
 
     UiStyle styleTheme;
 
+    QString compilerPath;
+
     bool mouseDrag;
     QPoint mousePos;
+
+    QSettings* setting;
 };
 #endif // MAINWINDOW_H

@@ -10,6 +10,12 @@
     <height>600</height>
    </rect>
   </property>
+  <property name="font">
+   <font>
+    <family>微软雅黑</family>
+    <pointsize>10</pointsize>
+   </font>
+  </property>
   <property name="mouseTracking">
    <bool>true</bool>
   </property>
@@ -46,6 +52,8 @@
          <font>
           <family>微软雅黑</family>
           <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
          </font>
         </property>
         <property name="textAlignment">
@@ -82,15 +90,12 @@
        <property name="font">
         <font>
          <family>微软雅黑</family>
+         <pointsize>10</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
         </font>
        </property>
        <widget class="QWidget" name="fontPage">
-        <property name="font">
-         <font>
-          <family>微软雅黑</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <layout class="QVBoxLayout" name="verticalLayout">
          <property name="leftMargin">
           <number>10</number>
@@ -108,18 +113,43 @@
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QLabel" name="fontLabel">
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
              <property name="text">
               <string>选择字体</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QFontComboBox" name="fontComboBox"/>
+            <widget class="QFontComboBox" name="fontComboBox">
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
+            </widget>
            </item>
           </layout>
          </item>
          <item>
           <widget class="QLabel" name="browserLabel">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
            <property name="text">
             <string>预览字体效果</string>
            </property>
@@ -131,12 +161,6 @@
         </layout>
        </widget>
        <widget class="QWidget" name="themePage">
-        <property name="font">
-         <font>
-          <family>微软雅黑</family>
-          <pointsize>10</pointsize>
-         </font>
-        </property>
         <layout class="QVBoxLayout" name="verticalLayout_2">
          <property name="leftMargin">
           <number>10</number>
@@ -154,6 +178,14 @@
           <layout class="QHBoxLayout" name="horizontalLayout_3">
            <item>
             <widget class="QLabel" name="themeLabel">
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
              <property name="text">
               <string>选择主题</string>
              </property>
@@ -161,6 +193,14 @@
            </item>
            <item>
             <widget class="QComboBox" name="themeComboBox">
+             <property name="font">
+              <font>
+               <family>微软雅黑</family>
+               <pointsize>10</pointsize>
+               <weight>50</weight>
+               <bold>false</bold>
+              </font>
+             </property>
              <item>
               <property name="text">
                <string>黑色主题</string>
@@ -187,6 +227,86 @@
             <string/>
            </property>
           </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="compilerPage">
+        <layout class="QVBoxLayout" name="verticalLayout_3">
+         <property name="leftMargin">
+          <number>10</number>
+         </property>
+         <property name="topMargin">
+          <number>0</number>
+         </property>
+         <property name="rightMargin">
+          <number>0</number>
+         </property>
+         <property name="bottomMargin">
+          <number>0</number>
+         </property>
+         <item>
+          <widget class="QLabel" name="compilerLabel">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>选择编译器</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="compilerPath">
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
+            </font>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QPushButton" name="compilerBrowseButton">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+             <horstretch>0</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="font">
+            <font>
+             <family>微软雅黑</family>
+             <pointsize>10</pointsize>
+             <weight>75</weight>
+             <bold>true</bold>
+            </font>
+           </property>
+           <property name="text">
+            <string>浏览</string>
+           </property>
+           <property name="flat">
+            <bool>true</bool>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </widget>
@@ -276,7 +396,7 @@
     <bool>true</bool>
    </property>
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>标题栏</string>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -485,6 +605,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>fontComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>OptionWindow</receiver>
+   <slot>optionHasChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>534</x>
+     <y>38</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>335</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>themeComboBox</sender>
+   <signal>currentIndexChanged(int)</signal>
+   <receiver>OptionWindow</receiver>
+   <slot>optionHasChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>595</x>
+     <y>39</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>544</x>
+     <y>21</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>compilerPath</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>OptionWindow</receiver>
+   <slot>optionHasChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>403</x>
+     <y>66</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>679</x>
+     <y>22</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>switchStatus()</slot>
@@ -492,5 +660,6 @@
   <slot>applyOption()</slot>
   <slot>cancelOption()</slot>
   <slot>handleStack()</slot>
+  <slot>optionHasChanged()</slot>
  </slots>
 </ui>

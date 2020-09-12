@@ -3,6 +3,10 @@
 
 #include "Slide.h"
 #include "OptionWindow.h"
+#include "Dialog.h"
+#include "FRWindow.h"
+#include "AboutThisWindow.h"
+#include "AboutUsWindow.h"
 
 #include <QCloseEvent>
 #include <QMessageBox>
@@ -24,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent)
     initDockWidget();
     initMenuBar();
     initToolBar();
+    initSetting();
     initWindowStatus();
     initMouseStatus();
     initEventFilter();
@@ -132,10 +137,24 @@ void MainWindow::initWindowStatus()
     switch(this->windowState())
     {
     case Qt::WindowMaximized:
-        ui->switchButton->setIcon(QIcon("://icons/resH.png"));
+        if(this->styleTheme == DarkTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/resH.png"));
+        }
+        if(this->styleTheme == LightTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/resH_D.png"));
+        }
         break;
     default:
-        ui->switchButton->setIcon(QIcon("://icons/maxH.png"));
+        if(this->styleTheme == DarkTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/maxH.png"));
+        }
+        if(this->styleTheme == LightTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/maxH_D.png"));
+        }
         break;
     }
 }
@@ -153,16 +172,62 @@ void MainWindow::initEventFilter()
     ui->statusbar->installEventFilter(this);
 }
 
+void MainWindow::initSetting()
+{
+    this->setting = new QSettings("config.gni", QSettings::IniFormat);
+    ui->codeEditor->setFont(QFont(setting->value("Edit/font").toString()));
+    this->compilerPath = setting->value("Compile/compiler").toString();
+
+    QString themeName = setting->value("Edit/theme").toString();
+    if(themeName == "黑色主题")
+    {
+        this->styleTheme = DarkTheme;
+    }
+    if(themeName == "白色主题")
+    {
+        this->styleTheme = LightTheme;
+    }
+}
+
 void MainWindow::initStylesheet()
 {
-    this->styleTheme = DarkTheme;
-
     if(this->styleTheme == DarkTheme)
     {
         QFile qssFile(":/dark/stylesheets/MainWindowD.qss");
         qssFile.open(QFile::ReadOnly);
         this->setStyleSheet(qssFile.readAll());
         qssFile.close();
+
+        ui->minButton->setIcon(QIcon("://icons/minH.png"));
+        ui->closeButton->setIcon(QIcon("://icons/closeH.png"));
+
+        ui->runButton->setIcon(QIcon("://icons/runD.png"));
+        ui->debugButton->setIcon(QIcon("://icons/debugD.png"));
+        ui->stopButton->setIcon(QIcon("://icons/stopD.png"));
+
+        ui->openButton->setIcon(QIcon("://icons/openD.png"));
+        ui->saveButton->setIcon(QIcon("://icons/saveD.png"));
+        ui->saveAllButton->setIcon(QIcon("://icons/save_allD.png"));
+        ui->saveAsButton->setIcon(QIcon("://icons/save_asD.png"));
+    }
+    if(this->styleTheme == LightTheme)
+    {
+        QFile qssFile(":/light/stylesheets/MainWindowL.qss");
+        qssFile.open(QFile::ReadOnly);
+        this->setStyleSheet(qssFile.readAll());
+        qssFile.close();
+
+        ui->minButton->setIcon(QIcon("://icons/minH_D.png"));
+        ui->closeButton->setIcon(QIcon("://icons/closeH_D.png"));
+
+        ui->runButton->setIcon(QIcon("://icons/run.png"));
+        ui->debugButton->setIcon(QIcon("://icons/debug.png"));
+        ui->stopButton->setIcon(QIcon("://icons/stop.png"));
+
+        ui->openButton->setIcon(QIcon("://icons/open.png"));
+        ui->saveButton->setIcon(QIcon("://icons/save.png"));
+        ui->saveAllButton->setIcon(QIcon("://icons/save_all.png"));
+        ui->saveAsButton->setIcon(QIcon("://icons/save_as.png"));
     }
 }
 
@@ -171,6 +236,41 @@ void MainWindow::delayToShow(int mesc)
     QEventLoop loop;
     QTimer::singleShot(mesc, &loop, SLOT(quit()));
     loop.exec();
+}
+
+void MainWindow::changeEditorFont(QFont font)
+{
+    ui->codeEditor->setFont(font);
+}
+
+void MainWindow::changeCompilerPath(QString path)
+{
+    this->compilerPath = path;
+}
+
+void MainWindow::changeThemeTo(UiStyle theme)
+{
+    switch(theme)
+    {
+    case LightTheme:
+        this->styleTheme = LightTheme;
+        break;
+    case DarkTheme:
+        this->styleTheme = DarkTheme;
+        break;
+    }
+    this->initStylesheet();
+    this->initWindowStatus();
+}
+
+UiStyle MainWindow::theme()
+{
+    return this->styleTheme;
+}
+
+QSettings *MainWindow::settings()
+{
+    return this->setting;
 }
 
 bool MainWindow::eventFilter(QObject* object, QEvent* event)
@@ -259,8 +359,12 @@ bool MainWindow::nativeEvent(const QByteArray &eventType, void *message, long *r
 
 void MainWindow::closeEvent(QCloseEvent* event)
 {
-    QMessageBox::StandardButton result = QMessageBox::question(this, "提示", "即将退出\n\n确定吗");
-    result == QMessageBox::Yes ? event->accept() : event->ignore();
+    Dialog dialog(this);
+    dialog.setButtonText("确定", "取消");
+    dialog.setInfo("即将退出GCode\n确定吗");
+    int result = dialog.exec();
+    result == QDialog::Accepted ?
+    event->accept() : event->ignore();
 }
 
 void MainWindow::switchStatus()
@@ -269,11 +373,25 @@ void MainWindow::switchStatus()
     {
     case Qt::WindowMaximized:
         this->showNormal();
-        ui->switchButton->setIcon(QIcon("://icons/maxH.png"));
+        if(this->styleTheme == DarkTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/maxH.png"));
+        }
+        if(this->styleTheme == LightTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/maxH_D.png"));
+        }
         break;
     default:
         this->showMaximized();
-        ui->switchButton->setIcon(QIcon("://icons/resH.png"));
+        if(this->styleTheme == DarkTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/resH.png"));
+        }
+        if(this->styleTheme == LightTheme)
+        {
+            ui->switchButton->setIcon(QIcon("://icons/resH_D.png"));
+        }
         break;
     }
 }
@@ -287,5 +405,23 @@ void MainWindow::showOption()
 {
     OptionWindow* optionWindow = new OptionWindow(this);
     optionWindow->show();
+}
+
+void MainWindow::showFindReplace()
+{
+    FRWindow* frWindow = new FRWindow(this);
+    frWindow->show();
+}
+
+void MainWindow::showAboutThis()
+{
+    AboutThisWindow* aboutThisWindow = new AboutThisWindow(this);
+    aboutThisWindow->show();
+}
+
+void MainWindow::showAboutUs()
+{
+    AboutUsWindow* aboutUsWindow = new AboutUsWindow(this);
+    aboutUsWindow->show();
 }
 

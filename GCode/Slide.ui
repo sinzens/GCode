@@ -22,7 +22,11 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Form</string>
+   <string>GCode Welcome</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/Gicon.png</normaloff>:/icons/Gicon.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">QWidget#Slide
@@ -74,6 +78,9 @@ QLabel#slideLabel
      <property name="font">
       <font>
        <family>微软雅黑</family>
+       <pointsize>10</pointsize>
+       <weight>75</weight>
+       <bold>true</bold>
       </font>
      </property>
      <property name="styleSheet">
@@ -100,6 +107,8 @@ QProgressBar::chunk
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="icons.qrc"/>
+ </resources>
  <connections/>
 </ui>

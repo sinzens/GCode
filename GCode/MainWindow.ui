@@ -13,6 +13,7 @@
   <property name="font">
    <font>
     <family>微软雅黑</family>
+    <pointsize>10</pointsize>
    </font>
   </property>
   <property name="mouseTracking">
@@ -20,6 +21,10 @@
   </property>
   <property name="windowTitle">
    <string>GCode</string>
+  </property>
+  <property name="windowIcon">
+   <iconset resource="icons.qrc">
+    <normaloff>:/icons/Gicon.png</normaloff>:/icons/Gicon.png</iconset>
   </property>
   <property name="dockNestingEnabled">
    <bool>true</bool>
@@ -30,6 +35,14 @@
   <widget class="QWidget" name="centralwidget">
    <property name="enabled">
     <bool>true</bool>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+    </font>
    </property>
    <layout class="QGridLayout" name="gridLayout">
     <property name="leftMargin">
@@ -142,7 +155,8 @@
      <widget class="QToolButton" name="helpMenuButton">
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -180,7 +194,8 @@
      <widget class="QToolButton" name="editMenuButton">
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -198,7 +213,8 @@
      <widget class="QToolButton" name="toolMenuButton">
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -265,7 +281,8 @@
      <widget class="QToolButton" name="buildMenuButton">
       <property name="font">
        <font>
-        <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -311,6 +328,8 @@
        <font>
         <family>微软雅黑</family>
         <pointsize>10</pointsize>
+        <weight>75</weight>
+        <bold>true</bold>
        </font>
       </property>
       <property name="text">
@@ -444,6 +463,8 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -473,6 +494,8 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -501,6 +524,8 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -523,6 +548,8 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -541,6 +568,8 @@
      <font>
       <family>微软雅黑</family>
       <pointsize>10</pointsize>
+      <weight>50</weight>
+      <bold>false</bold>
      </font>
     </property>
     <property name="title">
@@ -578,6 +607,7 @@
    </property>
    <property name="font">
     <font>
+     <family>微软雅黑</family>
      <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -625,6 +655,14 @@
        <column>
         <property name="text">
          <string>文件列表</string>
+        </property>
+        <property name="font">
+         <font>
+          <family>微软雅黑</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
         </property>
         <property name="textAlignment">
          <set>AlignCenter</set>
@@ -724,6 +762,7 @@
    </property>
    <property name="font">
     <font>
+     <family>微软雅黑</family>
      <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -768,6 +807,7 @@
        </property>
        <property name="font">
         <font>
+         <family>微软雅黑</family>
          <pointsize>10</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -814,6 +854,8 @@
             <font>
              <family>Consolas</family>
              <pointsize>12</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
            <property name="lineWrapMode">
@@ -845,6 +887,7 @@
    </property>
    <property name="font">
     <font>
+     <family>微软雅黑</family>
      <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -880,6 +923,7 @@
       <widget class="QTabWidget" name="cosoleTab">
        <property name="font">
         <font>
+         <family>微软雅黑</family>
          <pointsize>10</pointsize>
          <weight>50</weight>
          <bold>false</bold>
@@ -917,6 +961,8 @@
             <font>
              <family>Consolas</family>
              <pointsize>11</pointsize>
+             <weight>50</weight>
+             <bold>false</bold>
             </font>
            </property>
           </widget>
@@ -953,6 +999,7 @@
   <widget class="QToolBar" name="titleBar">
    <property name="font">
     <font>
+     <family>微软雅黑</family>
      <pointsize>10</pointsize>
      <weight>75</weight>
      <bold>true</bold>
@@ -1002,7 +1049,7 @@
   </widget>
   <action name="actionNew">
    <property name="text">
-    <string>新建文件(&amp;N)</string>
+    <string>新建文件(&amp;N)...</string>
    </property>
    <property name="font">
     <font>
@@ -1016,7 +1063,7 @@
   </action>
   <action name="actionOpen">
    <property name="text">
-    <string>打开文件(&amp;O)</string>
+    <string>打开文件(&amp;O)...</string>
    </property>
    <property name="font">
     <font>
@@ -1118,6 +1165,12 @@
    <property name="text">
     <string>撤销</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+Z</string>
    </property>
@@ -1125,6 +1178,12 @@
   <action name="actionRedo">
    <property name="text">
     <string>恢复</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+Y</string>
@@ -1134,6 +1193,12 @@
    <property name="text">
     <string>剪切(&amp;T)</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+X</string>
    </property>
@@ -1141,6 +1206,12 @@
   <action name="actionCopy">
    <property name="text">
     <string>复制(&amp;C)</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+C</string>
@@ -1150,6 +1221,12 @@
    <property name="text">
     <string>粘贴(&amp;P)</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+V</string>
    </property>
@@ -1158,10 +1235,22 @@
    <property name="text">
     <string>删除(&amp;D)</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionSelectAll">
    <property name="text">
     <string>全选(&amp;A)</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>Ctrl+A</string>
@@ -1171,10 +1260,22 @@
    <property name="text">
     <string>查找/替换...</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionComplile">
    <property name="text">
     <string>编译</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>F9</string>
@@ -1184,6 +1285,12 @@
    <property name="text">
     <string>运行</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>Ctrl+R</string>
    </property>
@@ -1191,6 +1298,12 @@
   <action name="actionDebug">
    <property name="text">
     <string>调试</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
    <property name="shortcut">
     <string>F5</string>
@@ -1200,6 +1313,12 @@
    <property name="text">
     <string>终止</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
    <property name="shortcut">
     <string>F6</string>
    </property>
@@ -1208,15 +1327,33 @@
    <property name="text">
     <string>选项(&amp;O)...</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionAboutThis">
    <property name="text">
     <string>关于软件...</string>
    </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
+   </property>
   </action>
   <action name="actionAboutUs">
    <property name="text">
     <string>关于我们...</string>
+   </property>
+   <property name="font">
+    <font>
+     <family>微软雅黑</family>
+     <pointsize>10</pointsize>
+    </font>
    </property>
   </action>
  </widget>
@@ -1231,12 +1368,12 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>974</x>
-     <y>122</y>
+     <x>1114</x>
+     <y>102</y>
     </hint>
     <hint type="destinationlabel">
-     <x>974</x>
-     <y>122</y>
+     <x>1114</x>
+     <y>102</y>
     </hint>
    </hints>
   </connection>
@@ -1247,12 +1384,12 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>974</x>
-     <y>225</y>
+     <x>1115</x>
+     <y>172</y>
     </hint>
     <hint type="destinationlabel">
-     <x>974</x>
-     <y>225</y>
+     <x>1115</x>
+     <y>172</y>
     </hint>
    </hints>
   </connection>
@@ -1263,12 +1400,12 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>974</x>
-     <y>328</y>
+     <x>1117</x>
+     <y>257</y>
     </hint>
     <hint type="destinationlabel">
-     <x>974</x>
-     <y>328</y>
+     <x>1117</x>
+     <y>257</y>
     </hint>
    </hints>
   </connection>
@@ -1279,12 +1416,12 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>974</x>
-     <y>431</y>
+     <x>1116</x>
+     <y>357</y>
     </hint>
     <hint type="destinationlabel">
-     <x>974</x>
-     <y>431</y>
+     <x>1116</x>
+     <y>357</y>
     </hint>
    </hints>
   </connection>
@@ -1295,12 +1432,12 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>976</x>
-     <y>534</y>
+     <x>1119</x>
+     <y>457</y>
     </hint>
     <hint type="destinationlabel">
-     <x>976</x>
-     <y>534</y>
+     <x>1119</x>
+     <y>457</y>
     </hint>
    </hints>
   </connection>
@@ -1311,8 +1448,8 @@
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>591</x>
-     <y>123</y>
+     <x>551</x>
+     <y>100</y>
     </hint>
     <hint type="destinationlabel">
      <x>477</x>
@@ -1327,8 +1464,8 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>594</x>
-     <y>327</y>
+     <x>551</x>
+     <y>255</y>
     </hint>
     <hint type="destinationlabel">
      <x>455</x>
@@ -1343,8 +1480,8 @@
    <slot>switchStatus()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>596</x>
-     <y>225</y>
+     <x>551</x>
+     <y>172</y>
     </hint>
     <hint type="destinationlabel">
      <x>427</x>
@@ -1384,10 +1521,61 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionFindReplace</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showFindReplace()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAboutThis</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showAboutThis()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAboutUs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showAboutUs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>switchStatus()</slot>
   <slot>removeTab(int)</slot>
   <slot>showOption()</slot>
+  <slot>showFindReplace()</slot>
+  <slot>showAboutThis()</slot>
+  <slot>showAboutUs()</slot>
  </slots>
 </ui>

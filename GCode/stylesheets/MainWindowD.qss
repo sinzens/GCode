@@ -3,6 +3,17 @@ QMainWindow
     background-color: rgb(60, 60, 60);
 }
 
+QDialog
+{
+    background-color: rgb(60, 60, 60);
+}
+
+QWidget#dialogTitleBar
+{
+    border: 0;
+    background-color: rgb(50, 50, 50);
+}
+
 QSplitter::handle
 {
     background-color: rgb(60, 60, 60);
@@ -12,11 +23,13 @@ QStatusBar
 {
     background-color: rgb(163, 9, 172);
     color: white;
+    font: bold 10pt "微软雅黑";
 }
 
 QLabel
 {
     color: white;
+    font: 10pt "微软雅黑";
 }
 
 QLabel#iconLabel
@@ -24,10 +37,16 @@ QLabel#iconLabel
     margin: 0px 10px 0px 10px;
 }
 
+QLabel#infoLabel
+{
+    font: bold 12pt "微软雅黑";
+}
+
 QPushButton
 {
     background-color: rgb(120, 120, 120);
     color: white;
+    font: bold 10pt "微软雅黑";
     border: 0;
     padding: 5px 40px 5px 40px;
 }
@@ -42,6 +61,12 @@ QPushButton:pressed
     background-color: rgb(80, 80, 80);
 }
 
+QPushButton:disabled
+{
+    background-color: rgb(80, 80, 80);
+    color: grey;
+}
+
 QToolBar
 {
     border: 0;
@@ -51,6 +76,7 @@ QToolBar
 QToolButton
 {
     padding: 5px 15px 5px 15px;
+    font: bold 10pt "微软雅黑";
     color: white;
     background-color: rgb(50, 50, 50);
     border: 0;
@@ -158,6 +184,7 @@ QMenu::item
 {
     background-color: transparent;
     color: white;
+    font: 10pt "微软雅黑";
     padding: 7px 15px 7px 15px;
 }
 
@@ -170,6 +197,7 @@ QDockWidget
 {
     titlebar-close-icon: url(://icons/closeH.png);
     color: white;
+    font: bold 10pt "微软雅黑";
 }
 
 QDockWidget::title
@@ -200,6 +228,7 @@ QTreeWidget
     alternate-background-color: rgb(80, 80, 80);
     background-color :rgb(80, 80, 80);
     color: white;
+    font: bold 10pt "微软雅黑";
     border: 0;
     outline: 0;
 }
@@ -207,6 +236,7 @@ QTreeWidget
 QHeaderView
 {
     color: white;
+    font: bold 10pt "微软雅黑";
 }
 
 QHeaderView::section
@@ -218,6 +248,8 @@ QHeaderView::section
 QTreeWidget::item
 {
     background-color: rgb(80, 80, 80);
+    color: white;
+    font: bold 10pt "微软雅黑";
 }
 
 QTreeWidget::item:hover
@@ -283,6 +315,7 @@ QTabBar::tab
     border: 0;
     background-color: rgb(80, 80, 80);
     color: white;
+    font: 10pt "微软雅黑";
     min-width: 150px;
     padding: 5px 10px 5px 10px;
 }
@@ -295,11 +328,14 @@ QTabBar::tab:hover
 QTabBar::tab:selected
 {
     background-color: rgb(120, 120, 120);
+    border-left: 2px solid;
+    border-bottom: 2px solid;
+    border-color: rgb(50, 50, 50);
 }
 
 QTabBar::tab:!selected
 {
-
+    margin-top: 3px;
 }
 
 QTabBar::close-button
@@ -324,11 +360,20 @@ QTextEdit
     border: 0;
 }
 
+QLineEdit
+{
+    background-color: rgb(100, 100, 100);
+    color: white;
+    font: 10pt "微软雅黑";
+    border: 0;
+}
+
 QComboBox
 {
     background-color: rgb(100, 100, 100);
     border: 1px solid black;
     color: white;
+    font: 10pt "微软雅黑";
 }
 
 QComboBox:hover
@@ -362,11 +407,24 @@ QComboBox QAbstractItemView
 {
     background-color: rgb(90, 90, 90);
     border: 2px solid grey;
+    outline: 0;
 }
 
 QComboBox QAbstractItemView::item
 {
-
+    color: white;
+    font: 10pt "微软雅黑";
     padding: 5px 10px 5px 10px;
+    border: 0;
+}
+
+QComboBox QAbstractItemView::item:hover
+{
+    background-color: rgb(120, 120, 120);
+}
+
+QComboBox QAbstractItemView::item:selected
+{
+    background-color: rgb(120, 120, 120);
 }
 
