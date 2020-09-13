@@ -513,7 +513,7 @@
    <sender>closeButton</sender>
    <signal>clicked()</signal>
    <receiver>OptionWindow</receiver>
-   <slot>close()</slot>
+   <slot>cancelOption()</slot>
    <hints>
     <hint type="sourcelabel">
      <x>616</x>
@@ -628,8 +628,8 @@
    <slot>optionHasChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>595</x>
-     <y>39</y>
+     <x>416</x>
+     <y>35</y>
     </hint>
     <hint type="destinationlabel">
      <x>544</x>
@@ -644,8 +644,8 @@
    <slot>optionHasChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>403</x>
-     <y>66</y>
+     <x>417</x>
+     <y>37</y>
     </hint>
     <hint type="destinationlabel">
      <x>679</x>

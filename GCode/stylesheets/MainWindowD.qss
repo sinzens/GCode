@@ -376,7 +376,21 @@ QComboBox
     font: 10pt "微软雅黑";
 }
 
+QComboBox:editable
+{
+    background-color: rgb(100, 100, 100);
+    border: 1px solid black;
+    color: white;
+    font: 10pt "微软雅黑";
+}
+
 QComboBox:hover
+{
+    border: 2px solid grey;
+    background-color: rgb(120, 120, 120);
+}
+
+QComboBox:editable:hover
 {
     border: 2px solid grey;
     background-color: rgb(120, 120, 120);

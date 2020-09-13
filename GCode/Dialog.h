@@ -37,9 +37,12 @@ public:
     void setCancelText(QString text);
     void setButtonText(QString confirmText, QString cancelText);
     void setInfo(QString text);
+    void hideConfirm();
+    void hideCancel();
 
 protected:
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
     Ui::Dialog *ui; 

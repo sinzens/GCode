@@ -6,6 +6,7 @@
 
 #include <QMouseEvent>
 #include <QDebug>
+#include <QPainter>
 
 typedef void doNothing;
 
@@ -82,6 +83,16 @@ void Dialog::setInfo(QString text)
     ui->infoLabel->setText(text);
 }
 
+void Dialog::hideConfirm()
+{
+    ui->confirmButton->setVisible(false);
+}
+
+void Dialog::hideCancel()
+{
+    ui->cancelButton->setVisible(false);
+}
+
 bool Dialog::eventFilter(QObject *object, QEvent *event)
 {
     if(object == ui->dialogTitleBar)
@@ -106,4 +117,24 @@ bool Dialog::eventFilter(QObject *object, QEvent *event)
         }
     }
     return QDialog::eventFilter(object, event);
+}
+
+void Dialog::paintEvent(QPaintEvent *event)
+{
+    QPainter painter(this);
+    painter.setRenderHint(QPainter::Antialiasing);
+    if(this->styleTheme == DarkTheme)
+    {
+        painter.setPen(QPen(QColor(50, 50, 50), 4));
+    }
+    if(this->styleTheme == LightTheme)
+    {
+        painter.setPen(QPen(QColor(190, 190, 190), 4));
+    }
+    painter.setBrush(Qt::transparent);
+    QRect rect = this->rect();
+    rect.setWidth(rect.width() - 1);
+    rect.setHeight(rect.height() - 1);
+    painter.drawRect(rect);
+    QDialog::paintEvent(event);
 }

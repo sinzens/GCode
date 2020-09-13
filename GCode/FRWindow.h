@@ -22,7 +22,7 @@ public:
 
 protected:
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
-    //void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
 
 private:
     Ui::FRWindow *ui;

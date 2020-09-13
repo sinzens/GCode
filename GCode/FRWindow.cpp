@@ -76,15 +76,22 @@ bool FRWindow::eventFilter(QObject *object, QEvent *event)
     return QDialog::eventFilter(object, event);
 }
 
-/*void FRWindow::paintEvent(QPaintEvent *event)
+void FRWindow::paintEvent(QPaintEvent *event)
 {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
-    painter.setPen(QPen(QColor(50, 50, 50), 4));
+    if(this->styleTheme == DarkTheme)
+    {
+        painter.setPen(QPen(QColor(50, 50, 50), 4));
+    }
+    if(this->styleTheme == LightTheme)
+    {
+        painter.setPen(QPen(QColor(190, 190, 190), 4));
+    }
     painter.setBrush(Qt::transparent);
     QRect rect = this->rect();
     rect.setWidth(rect.width() - 1);
     rect.setHeight(rect.height() - 1);
     painter.drawRect(rect);
     QDialog::paintEvent(event);
-}*/
+}

@@ -12,6 +12,7 @@
 #include <QMessageBox>
 #include <QDebug>
 #include <QFile>
+#include <QFileInfo>
 #include <QTimer>
 
 typedef void doNothing;
@@ -174,6 +175,17 @@ void MainWindow::initEventFilter()
 
 void MainWindow::initSetting()
 {
+    QFileInfo fileInfo("config.gni");
+    if(!fileInfo.exists())
+    {
+        Dialog dialog(this);
+        dialog.setButtonText("确定", "取消");
+        dialog.hideCancel();
+        dialog.setInfo("未能找到配置文件config.gni");
+        dialog.exec();
+        this->styleTheme = DarkTheme;
+    }
+
     this->setting = new QSettings("config.gni", QSettings::IniFormat);
     ui->codeEditor->setFont(QFont(setting->value("Edit/font").toString()));
     this->compilerPath = setting->value("Compile/compiler").toString();
@@ -364,7 +376,7 @@ void MainWindow::closeEvent(QCloseEvent* event)
     dialog.setInfo("即将退出GCode\n确定吗");
     int result = dialog.exec();
     result == QDialog::Accepted ?
-    event->accept() : event->ignore();
+                event->accept() : event->ignore();
 }
 
 void MainWindow::switchStatus()
