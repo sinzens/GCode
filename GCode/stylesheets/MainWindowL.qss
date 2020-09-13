@@ -21,7 +21,6 @@ QSplitter::handle
 
 QStatusBar
 {
-    /*background-color: rgb(217,212,212);*/
     background-color: rgb(138, 181, 244);
     color: black;
     font: bold 10pt "微软雅黑";
