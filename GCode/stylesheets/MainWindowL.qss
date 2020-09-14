@@ -357,6 +357,8 @@ QTextEdit
 {
     background-color: rgb(250, 250, 250);
     color: black;
+    font-size: 12pt;
+    font-weight: normal;
     border: 0;
 }
 

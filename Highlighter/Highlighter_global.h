@@ -1,0 +1,12 @@
+#ifndef HIGHLIGHTER_GLOBAL_H
+#define HIGHLIGHTER_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(HIGHLIGHTER_LIBRARY)
+#  define HIGHLIGHTER_EXPORT Q_DECL_EXPORT
+#else
+#  define HIGHLIGHTER_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // HIGHLIGHTER_GLOBAL_H

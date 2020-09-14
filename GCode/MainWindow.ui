@@ -602,7 +602,7 @@
    <property name="minimumSize">
     <size>
      <width>109</width>
-     <height>139</height>
+     <height>215</height>
     </size>
    </property>
    <property name="font">
@@ -620,7 +620,7 @@
     <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="allowedAreas">
-    <set>Qt::LeftDockWidgetArea</set>
+    <set>Qt::AllDockWidgetAreas</set>
    </property>
    <property name="windowTitle">
     <string>工作区目录</string>
@@ -631,7 +631,7 @@
    <widget class="QWidget" name="dockWidgetContents_2">
     <layout class="QGridLayout" name="gridLayout_2">
      <property name="leftMargin">
-      <number>0</number>
+      <number>10</number>
      </property>
      <property name="topMargin">
       <number>0</number>
@@ -757,7 +757,7 @@
    <property name="minimumSize">
     <size>
      <width>229</width>
-     <height>173</height>
+     <height>184</height>
     </size>
    </property>
    <property name="font">
@@ -772,7 +772,7 @@
     <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="allowedAreas">
-    <set>Qt::RightDockWidgetArea</set>
+    <set>Qt::AllDockWidgetAreas</set>
    </property>
    <property name="windowTitle">
     <string>编辑器</string>
@@ -792,7 +792,7 @@
       <number>0</number>
      </property>
      <property name="rightMargin">
-      <number>0</number>
+      <number>10</number>
      </property>
      <property name="bottomMargin">
       <number>0</number>
@@ -804,6 +804,12 @@
       <widget class="QTabWidget" name="editorTab">
        <property name="enabled">
         <bool>true</bool>
+       </property>
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
        <property name="font">
         <font>
@@ -848,24 +854,9 @@
          <property name="bottomMargin">
           <number>0</number>
          </property>
-         <item row="0" column="0">
-          <widget class="QTextEdit" name="codeEditor">
-           <property name="font">
-            <font>
-             <family>Consolas</family>
-             <pointsize>12</pointsize>
-             <weight>50</weight>
-             <bold>false</bold>
-            </font>
-           </property>
-           <property name="lineWrapMode">
-            <enum>QTextEdit::NoWrap</enum>
-           </property>
-           <property name="tabStopDistance">
-            <double>40.000000000000000</double>
-           </property>
-          </widget>
-         </item>
+         <property name="spacing">
+          <number>0</number>
+         </property>
         </layout>
        </widget>
        <widget class="QWidget" name="tab">
@@ -873,6 +864,24 @@
          <string>页</string>
         </attribute>
        </widget>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QTextEdit" name="codeEditor">
+       <property name="font">
+        <font>
+         <family>Consolas</family>
+         <pointsize>12</pointsize>
+         <weight>50</weight>
+         <bold>false</bold>
+        </font>
+       </property>
+       <property name="lineWrapMode">
+        <enum>QTextEdit::NoWrap</enum>
+       </property>
+       <property name="tabStopDistance">
+        <double>40.000000000000000</double>
+       </property>
       </widget>
      </item>
     </layout>
@@ -897,7 +906,7 @@
     <set>QDockWidget::DockWidgetClosable|QDockWidget::DockWidgetMovable</set>
    </property>
    <property name="allowedAreas">
-    <set>Qt::BottomDockWidgetArea</set>
+    <set>Qt::AllDockWidgetAreas</set>
    </property>
    <property name="windowTitle">
     <string>控制台</string>
@@ -908,13 +917,13 @@
    <widget class="QWidget" name="dockWidgetContents_4">
     <layout class="QGridLayout" name="gridLayout_4">
      <property name="leftMargin">
-      <number>0</number>
+      <number>10</number>
      </property>
      <property name="topMargin">
       <number>0</number>
      </property>
      <property name="rightMargin">
-      <number>0</number>
+      <number>10</number>
      </property>
      <property name="bottomMargin">
       <number>0</number>

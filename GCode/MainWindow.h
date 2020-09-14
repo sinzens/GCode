@@ -27,6 +27,7 @@ public:
     inline void initDockWidget();
     inline void initMenuBar();
     inline void initToolBar();
+    inline void initTabWidget();
     inline void initWindowStatus();
     inline void initMouseStatus();
     inline void initEventFilter();

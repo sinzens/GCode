@@ -56,3 +56,10 @@ DISTFILES += \
 RESOURCES += \
     icons.qrc \
     stylesheets.qrc
+
+win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Highlighter/release/ -lHighlighter
+else:win32:CONFIG(debug, debug|release): LIBS += -L$$OUT_PWD/../Highlighter/debug/ -lHighlighter
+else:unix: LIBS += -L$$OUT_PWD/../Highlighter/ -lHighlighter
+
+INCLUDEPATH += $$PWD/../Highlighter
+DEPENDPATH += $$PWD/../Highlighter

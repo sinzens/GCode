@@ -21,14 +21,15 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    /*Slide slide;
+    Slide slide;
     slide.show();
-    slideProcess(&slide);*/
+    slideProcess(&slide);
     ui->setupUi(this);
     this->setWindowFlags(Qt::FramelessWindowHint);
     initDockWidget();
     initMenuBar();
     initToolBar();
+    initTabWidget();
     initSetting();
     initWindowStatus();
     initMouseStatus();
@@ -131,6 +132,16 @@ void MainWindow::initToolBar()
     ui->leftToolBar->addWidget(ui->runButton);
     ui->leftToolBar->addWidget(ui->debugButton);
     ui->leftToolBar->addWidget(ui->stopButton);
+}
+
+void MainWindow::initTabWidget()
+{
+    int tabNum = ui->editorTab->count();
+    for(int i = 0; i < tabNum; i++)
+    {
+        QWidget* tab = ui->editorTab->widget(i);
+        tab->setVisible(false);
+    }
 }
 
 void MainWindow::initWindowStatus()
