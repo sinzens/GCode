@@ -39,6 +39,8 @@ public:
     void changeThemeTo(UiStyle theme);
     UiStyle theme();
     QSettings* settings();
+public slots:
+    void receivefindsignal(QString Data,int flag,QString Data1);
 
 protected:
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
@@ -52,7 +54,6 @@ protected slots:
     void showFindReplace();
     void showAboutThis();
     void showAboutUs();
-
 private:
     Ui::MainWindow* ui;
 

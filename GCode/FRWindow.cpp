@@ -95,3 +95,23 @@ void FRWindow::paintEvent(QPaintEvent *event)
     painter.drawRect(rect);
     QDialog::paintEvent(event);
 }
+void FRWindow::on_findnextButton_clicked()
+{
+    emit sendfindsignal(ui->findEdit->text(),1,ui->replaceEdit->text());
+}
+
+void FRWindow::on_findallButton_clicked()
+{
+    emit sendfindsignal(ui->findEdit->text(),2,ui->replaceEdit->text());
+}
+
+
+void FRWindow::on_replacenextButton_clicked()
+{
+    emit sendfindsignal(ui->findEdit->text(),3,ui->replaceEdit->text());
+}
+
+void FRWindow::on_replaceallButton_clicked()
+{
+    emit sendfindsignal(ui->findEdit->text(),4,ui->replaceEdit->text());
+}

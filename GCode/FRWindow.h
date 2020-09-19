@@ -23,6 +23,19 @@ public:
 protected:
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
     void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+signals:
+    void sendfindsignal(QString Data,int flag,QString Data1);
+
+private slots:
+    void on_findnextButton_clicked();
+
+    void on_findallButton_clicked();
+
+
+
+    void on_replacenextButton_clicked();
+
+    void on_replaceallButton_clicked();
 
 private:
     Ui::FRWindow *ui;

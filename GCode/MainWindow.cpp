@@ -433,6 +433,7 @@ void MainWindow::showOption()
 void MainWindow::showFindReplace()
 {
     FRWindow* frWindow = new FRWindow(this);
+    connect(frWindow,SIGNAL(sendfindsignal(QString,int,QString)),this,SLOT(receivefindsignal(QString,int,QString)));
     frWindow->show();
 }
 
@@ -448,3 +449,105 @@ void MainWindow::showAboutUs()
     aboutUsWindow->show();
 }
 
+void MainWindow::receivefindsignal(QString Data,int flag,QString Data1)
+{
+    if(flag==1)
+    {
+    QString search_text=Data;
+    if(search_text.trimmed().isEmpty())
+    {
+        QMessageBox::information(this,tr("查找失败"),tr("请输入要查找的内容"));
+    }
+    else
+    {
+        if(ui->codeEditor->find(search_text))
+        {
+
+            QPalette palette = ui->codeEditor->palette();
+            palette.setColor(QPalette::Highlight,palette.color(QPalette::Active,QPalette::Highlight));
+            ui->codeEditor->setPalette(palette);
+        }
+        else
+        {
+            QMessageBox::information(this,tr("查找失败"),tr("没有找到要找的内容"),QMessageBox::Ok);
+        }
+    }
+    }
+    if(flag==2)
+    {
+        QString search_text = Data;
+        if(search_text.trimmed().isEmpty())
+        {
+            QMessageBox::information(this,tr("查找失败"),tr("请输入要查找的内容"));
+        }
+        else
+        {
+            QTextDocument *document = ui->codeEditor->document();
+            bool find =false;
+            QTextCursor highlight(document);
+            QTextCursor cursor(document);
+
+            cursor.beginEditBlock();
+
+            QTextCharFormat color(highlight.charFormat());
+            color.setBackground(Qt::darkBlue);
+            while(!highlight.isNull()&&!highlight.atEnd())
+            {
+                highlight=document->find(search_text,highlight,QTextDocument::FindWholeWords);
+                if(!highlight.isNull())
+                {
+                    if(!find)
+                        find=true;
+                    highlight.mergeCharFormat(color);
+
+                }
+
+            }
+            cursor.endEditBlock();
+            if(find==false)
+            {
+                QMessageBox::information(this,tr("查找失败"),tr("没有找到要找的内容"));
+            }
+        }
+    }
+    if(flag==3)
+    {
+        QString replace_text=Data1;
+        QString search_text=Data;
+        if(search_text.isEmpty())
+        {
+            QMessageBox::information(this,tr("替换失败"),tr("请输入要被替换的内容"));
+        }
+        if(replace_text.isEmpty())
+        {
+            QMessageBox::information(this,tr("替换失败"),tr("请输入要替换成的内容"));
+        }
+        int idx = 0;
+        QString origin=ui->codeEditor->toPlainText();
+        idx = origin.indexOf(Data, 0);
+        if (-1 != idx)
+        {
+            origin.replace(idx,search_text.length(),replace_text);
+            ui->codeEditor->setText(origin);
+        }
+    }
+    if(flag==4)
+    {
+        QString replace_text=Data1;
+        QString search_text=Data;
+        if(search_text.isEmpty())
+        {
+            QMessageBox::information(this,tr("替换失败"),tr("请输入要被替换的内容"));
+        }
+        if(replace_text.isEmpty())
+        {
+            QMessageBox::information(this,tr("替换失败"),tr("请输入要替换成的内容"));
+        }
+        QString origin=ui->codeEditor->toPlainText();
+        origin.replace(search_text,replace_text,Qt::CaseSensitive);
+        ui->codeEditor->setText(origin);
+    }
+
+
+
+}
