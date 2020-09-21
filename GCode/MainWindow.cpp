@@ -469,7 +469,16 @@ void MainWindow::receivefindsignal(QString Data,int flag,QString Data1)
         }
         else
         {
-            QMessageBox::information(this,tr("查找失败"),tr("没有找到要找的内容"),QMessageBox::Ok);
+            if(ui->codeEditor->find(search_text,QTextDocument::FindBackward))
+            {
+                ui->codeEditor ->moveCursor(QTextCursor::Start, QTextCursor::MoveAnchor);
+                QMessageBox::information(this,tr("查找失败"),tr("已经查找到末尾,没有下一个要找的内容"),QMessageBox::Ok);
+
+            }
+            else
+            {
+                QMessageBox::information(this,tr("查找失败"),tr("没有找到要找的内容"),QMessageBox::Ok);
+            }
         }
     }
     }
