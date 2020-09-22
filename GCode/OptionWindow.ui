@@ -156,7 +156,16 @@
           </widget>
          </item>
          <item>
-          <widget class="QTextBrowser" name="fontPreviewer"/>
+          <widget class="QTextBrowser" name="fontPreviewer">
+           <property name="html">
+            <string>&lt;!DOCTYPE HTML PUBLIC &quot;-//W3C//DTD HTML 4.0//EN&quot; &quot;http://www.w3.org/TR/REC-html40/strict.dtd&quot;&gt;
+&lt;html&gt;&lt;head&gt;&lt;meta name=&quot;qrichtext&quot; content=&quot;1&quot; /&gt;&lt;style type=&quot;text/css&quot;&gt;
+p, li { white-space: pre-wrap; }
+&lt;/style&gt;&lt;/head&gt;&lt;body style=&quot; font-family:'微软雅黑'; font-size:10pt; font-weight:400; font-style:normal;&quot;&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑';&quot;&gt;Hello world!&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-family:'微软雅黑';&quot;&gt;你好 世界!&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -644,12 +653,28 @@
    <slot>optionHasChanged()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>417</x>
-     <y>37</y>
+     <x>745</x>
+     <y>83</y>
     </hint>
     <hint type="destinationlabel">
      <x>679</x>
      <y>22</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>compilerBrowseButton</sender>
+   <signal>clicked()</signal>
+   <receiver>OptionWindow</receiver>
+   <slot>showOpenDir()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>365</x>
+     <y>105</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>453</x>
+     <y>445</y>
     </hint>
    </hints>
   </connection>
@@ -661,5 +686,6 @@
   <slot>cancelOption()</slot>
   <slot>handleStack()</slot>
   <slot>optionHasChanged()</slot>
+  <slot>showOpenDir()</slot>
  </slots>
 </ui>

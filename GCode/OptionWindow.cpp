@@ -7,6 +7,8 @@
 #include <QMouseEvent>
 #include <QListView>
 #include <QDebug>
+#include <QSettings>
+#include <QFileDialog>
 
 typedef void doNothing;
 typedef bool changeNothing;
@@ -117,6 +119,10 @@ void OptionWindow::readSetting()
     ui->themeComboBox->setCurrentIndex(ui->themeComboBox->findText(
             parent->settings()->value("Edit/theme").toString()));
     ui->compilerPath->setText(parent->settings()->value("Compile/compiler").toString());
+
+    ui->fontPreviewer->setFontFamily(ui->fontComboBox->currentText());
+    ui->fontPreviewer->setFontPointSize(30);
+    ui->fontPreviewer->setText("Hello, world!\n你好，世界!");
 }
 
 MainWindow *OptionWindow::parentWindow()
@@ -217,6 +223,10 @@ void OptionWindow::applyOption()
         this->initTheme();
         this->initWindowStatus();
     }
+
+    ui->fontPreviewer->setFontFamily(ui->fontComboBox->currentText());
+    ui->fontPreviewer->setFontPointSize(30);
+    ui->fontPreviewer->setText("Hello, world!\n你好，世界!");
 }
 
 void OptionWindow::cancelOption()
@@ -259,5 +269,15 @@ void OptionWindow::optionHasChanged()
         ui->applyButton->setEnabled(true);
         this->optionChanged = true;
         this->optionConfirmed = false;
+    }
+}
+
+void OptionWindow::showOpenDir()
+{
+    QString fileDir = QFileDialog::getExistingDirectory(this, "打开文件");
+
+    if(!fileDir.isNull())
+    {
+        ui->compilerPath->setText(fileDir);
     }
 }

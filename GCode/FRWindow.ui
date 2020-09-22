@@ -357,5 +357,75 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>findButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FRWindow</receiver>
+   <slot>findNext()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>136</x>
+     <y>199</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>33</x>
+     <y>183</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>findAllButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FRWindow</receiver>
+   <slot>findAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>296</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>197</x>
+     <y>166</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>replaceButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FRWindow</receiver>
+   <slot>replaceNext()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>112</x>
+     <y>235</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>32</x>
+     <y>244</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>replaceAllButton</sender>
+   <signal>clicked()</signal>
+   <receiver>FRWindow</receiver>
+   <slot>replaceAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>263</x>
+     <y>232</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>193</x>
+     <y>256</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
+ <slots>
+  <slot>findNext()</slot>
+  <slot>findAll()</slot>
+  <slot>replaceNext()</slot>
+  <slot>replaceAll()</slot>
+ </slots>
 </ui>

@@ -668,86 +668,6 @@
          <set>AlignCenter</set>
         </property>
        </column>
-       <item>
-        <property name="text">
-         <string>TestProject</string>
-        </property>
-        <item>
-         <property name="text">
-          <string>headers</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>test1.h</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>test2.h</string>
-          </property>
-         </item>
-        </item>
-        <item>
-         <property name="text">
-          <string>sources</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>main.c</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>test1.c</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>test2.c</string>
-          </property>
-         </item>
-        </item>
-        <item>
-         <property name="text">
-          <string>resources</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>picture1.png</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>picture2.png</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>icon.ico</string>
-          </property>
-         </item>
-        </item>
-        <item>
-         <property name="text">
-          <string>others</string>
-         </property>
-         <item>
-          <property name="text">
-           <string>config.ini</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>setting.json</string>
-          </property>
-         </item>
-         <item>
-          <property name="text">
-           <string>text.xml</string>
-          </property>
-         </item>
-        </item>
-       </item>
       </widget>
      </item>
     </layout>
@@ -859,11 +779,6 @@
          </property>
         </layout>
        </widget>
-       <widget class="QWidget" name="tab">
-        <attribute name="title">
-         <string>页</string>
-        </attribute>
-       </widget>
       </widget>
      </item>
      <item row="1" column="0">
@@ -929,7 +844,7 @@
       <number>0</number>
      </property>
      <item row="0" column="0">
-      <widget class="QTabWidget" name="cosoleTab">
+      <widget class="QTabWidget" name="consoleTab">
        <property name="font">
         <font>
          <family>微软雅黑</family>
@@ -942,7 +857,7 @@
         <enum>QTabWidget::South</enum>
        </property>
        <property name="currentIndex">
-        <number>1</number>
+        <number>0</number>
        </property>
        <property name="documentMode">
         <bool>false</bool>
@@ -1125,7 +1040,7 @@
   </action>
   <action name="actionSaveAs">
    <property name="text">
-    <string>另存为</string>
+    <string>另存为...</string>
    </property>
    <property name="font">
     <font>
@@ -1505,8 +1420,8 @@
    <slot>removeTab(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1468</x>
-     <y>340</y>
+     <x>1589</x>
+     <y>126</y>
     </hint>
     <hint type="destinationlabel">
      <x>799</x>
@@ -1594,6 +1509,438 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showNewFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionOpen</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showOpenFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>save()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveAll</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSaveAs</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showSaveAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClose</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>closeFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCloseAll</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>closeAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionUndo</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>undo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRedo</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>redo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSelectAll</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>selectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionComplile</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>compile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRun</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>runCode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDebug</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>debug()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionStop</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>stopCode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>editorTab</sender>
+   <signal>currentChanged(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>changeTabTo(int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1403</x>
+     <y>116</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1221</x>
+     <y>174</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>codeEditor</sender>
+   <signal>textChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>codeUnSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1434</x>
+     <y>231</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1191</x>
+     <y>111</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCut</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>cut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCopy</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>copy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPaste</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>paste()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDelete</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>Delete()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>799</x>
+     <y>449</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>openButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showOpenFile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>803</x>
+     <y>229</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>690</x>
+     <y>158</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>save()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>797</x>
+     <y>337</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>683</x>
+     <y>316</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveAllButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>saveAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>802</x>
+     <y>428</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>643</x>
+     <y>389</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>saveAsButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>showSaveAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>791</x>
+     <y>556</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>673</x>
+     <y>535</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>runButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>runCode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>511</x>
+     <y>329</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>379</x>
+     <y>303</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>debugButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>debug()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>513</x>
+     <y>443</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>443</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>stopButton</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>stopCode()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>508</x>
+     <y>533</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>417</x>
+     <y>514</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>switchStatus()</slot>
@@ -1602,5 +1949,25 @@
   <slot>showFindReplace()</slot>
   <slot>showAboutThis()</slot>
   <slot>showAboutUs()</slot>
+  <slot>showNewFile()</slot>
+  <slot>showOpenFile()</slot>
+  <slot>save()</slot>
+  <slot>saveAll()</slot>
+  <slot>showSaveAs()</slot>
+  <slot>closeFile()</slot>
+  <slot>closeAll()</slot>
+  <slot>undo()</slot>
+  <slot>redo()</slot>
+  <slot>selectAll()</slot>
+  <slot>compile()</slot>
+  <slot>runCode()</slot>
+  <slot>debug()</slot>
+  <slot>stopCode()</slot>
+  <slot>changeTabTo(int)</slot>
+  <slot>codeUnSave()</slot>
+  <slot>cut()</slot>
+  <slot>copy()</slot>
+  <slot>paste()</slot>
+  <slot>Delete()</slot>
  </slots>
 </ui>

@@ -36,6 +36,8 @@ protected slots:
     void handleStack();
     void optionHasChanged();
 
+    void showOpenDir();
+
 private:
     Ui::OptionWindow *ui;
     int styleTheme;

@@ -95,3 +95,23 @@ void FRWindow::paintEvent(QPaintEvent *event)
     painter.drawRect(rect);
     QDialog::paintEvent(event);
 }
+
+void FRWindow::findNext()
+{
+    emit frRequested(ui->findEdit->text(), ui->replaceEdit->text(), FindNext);
+}
+
+void FRWindow::findAll()
+{
+    emit frRequested(ui->findEdit->text(), ui->replaceEdit->text(), FindAll);
+}
+
+void FRWindow::replaceNext()
+{
+    emit frRequested(ui->findEdit->text(), ui->replaceEdit->text(), ReplaceNext);
+}
+
+void FRWindow::replaceAll()
+{
+    emit frRequested(ui->findEdit->text(), ui->replaceEdit->text(), ReplaceAll);
+}
