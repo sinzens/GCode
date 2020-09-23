@@ -18,8 +18,10 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     AboutThisWindow.cpp \
     AboutUsWindow.cpp \
+    CodeEdit.cpp \
     Dialog.cpp \
     FRWindow.cpp \
+    LineArea.cpp \
     OptionWindow.cpp \
     Slide.cpp \
     main.cpp \
@@ -28,8 +30,10 @@ SOURCES += \
 HEADERS += \
     AboutThisWindow.h \
     AboutUsWindow.h \
+    CodeEdit.h \
     Dialog.h \
     FRWindow.h \
+    LineArea.h \
     MainWindow.h \
     OptionWindow.h \
     Slide.h
@@ -49,12 +53,14 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 DISTFILES += \
+    keywords/Keywords.txt \
     stylesheets/MainWindowD.qss \
     stylesheets/MainWindowL.qss \
     stylesheets/PushButtonL.qss
 
 RESOURCES += \
     icons.qrc \
+    keywords.qrc \
     stylesheets.qrc
 
 win32:CONFIG(release, debug|release): LIBS += -L$$OUT_PWD/../Highlighter/release/ -lHighlighter

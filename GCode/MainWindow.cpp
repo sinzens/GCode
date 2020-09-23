@@ -29,12 +29,11 @@ MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
 {
-    /*Slide slide;
+    Slide slide;
     slide.show();
-    slideProcess(&slide);*/
+    slideProcess(&slide);
     ui->setupUi(this);
     this->setWindowFlags(Qt::FramelessWindowHint);
-    highlighter = new Highlighter(ui->codeEditor->document());
     initDockWidget();
     initMenuBar();
     initToolBar();
@@ -94,6 +93,11 @@ void MainWindow::initDockWidget()
 void MainWindow::initMenuBar()
 {
     ui->menubar->setVisible(false);
+
+    QMenu* subMenu = new QMenu(ui->menubar);
+    subMenu->setMaximumWidth(1920);
+    subMenu->setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+    ui->actionRecent->setMenu(subMenu);
 
     ui->titleBar->addWidget(ui->iconLabel);
 
@@ -213,6 +217,36 @@ void MainWindow::initSetting()
     this->setting = new QSettings("config.gni", QSettings::IniFormat);
     ui->codeEditor->setFont(QFont(setting->value("Edit/font").toString()));
     this->compilerPath = setting->value("Compile/compiler").toString();
+    this->keywordList = setting->value("Keyword/keywords").toString().split("/");
+    QStringList recentList = setting->value("Recent/recent").toString().split("|");
+
+    if((this->keywordList.size() == 1 && this->keywordList.contains("")) ||
+        this->keywordList.isEmpty())
+    {
+        this->keywordList.clear();
+        QFile file("://keywords/Keywords.txt");
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        while(!file.atEnd())
+        {
+            QString word = QString(file.readLine()).remove("\n");
+            if(!word.isEmpty())
+            {
+                this->keywordList << word;
+            }
+        }
+        this->setting->setValue("Keyword/keywords", this->keywordList.join("/"));
+    }
+
+    this->highlighter = new Highlighter(ui->codeEditor->document(), this->keywordList);
+
+    if(!((recentList.size() == 1 && recentList.contains("")) ||
+        recentList.isEmpty()))
+    {
+        for(QString fileName : recentList)
+        {
+            this->generateRecent(fileName);
+        }
+    }
 
     QString themeName = setting->value("Edit/theme").toString();
     if(themeName == "黑色主题")
@@ -267,6 +301,7 @@ void MainWindow::initStylesheet()
     }
 
     this->oriColor = ui->codeEditor->textCursor().charFormat();
+    ui->codeEditor->setTheme(this->styleTheme);
 }
 
 void MainWindow::initConsole()
@@ -274,6 +309,13 @@ void MainWindow::initConsole()
     this->consoleProc = new QProcess(this);
     connect(this->consoleProc, SIGNAL(readyReadStandardOutput()), this, SLOT(readOutput()));
     connect(this->consoleProc, SIGNAL(readyReadStandardError()), this, SLOT(readError()));
+
+    connect(this->consoleProc, QOverload<int, QProcess::ExitStatus>::of(&QProcess::finished), [=] () {
+        ui->IOEditor->append("Process exited with code " + QString::number(this->consoleProc->exitStatus()) + "\n");
+        this->debuggerRunning = false;
+    });
+
+    this->debuggerRunning = false;
 }
 
 void MainWindow::delayToShow(int mesc)
@@ -337,6 +379,133 @@ QFileInfoList MainWindow::getFileList(const QDir &dir)
     return fileList;
 }
 
+void MainWindow::newFile(QString fileName)
+{
+    if(!fileName.isNull())
+    {
+        QWidget* newPage = new QWidget();
+        QString fileKey = takeDir(fileName) + "/" + takeName(fileName);
+
+        QFile file(fileName);
+        file.open(QIODevice::ReadWrite | QIODevice::Text);
+        QString content = file.readAll();
+        file.close();
+
+        this->generateRecent(fileName);
+
+        if(!editorMap.contains(fileKey))
+        {
+            CodeFile file = {fileKey, fileName, content, true};
+            editorMap.insert(fileKey, file);
+        }
+        else
+        {
+            editorMap[fileKey].url = fileName;
+            editorMap[fileKey].content = content;
+            editorMap[fileKey].saved = true;
+        }
+
+        ui->editorTab->addTab(newPage, fileKey);
+        ui->editorTab->setCurrentWidget(newPage);
+
+        int tabNum = ui->editorTab->count();
+        for(int i = 0; i < tabNum; i++)
+        {
+            if(ui->editorTab->tabText(i).remove("*") == "空文件")
+            {
+                this->removeTab(i);
+            }
+        }
+
+        this->generateFileTree(fileName);
+    }
+}
+
+void MainWindow::openFile(QString fileName)
+{
+    if(!fileName.isNull())
+    {
+        QWidget* newPage = new QWidget();
+        QString fileKey = takeDir(fileName) + "/" + takeName(fileName);
+
+        QFile file(fileName);
+        file.open(QIODevice::ReadOnly | QIODevice::Text);
+        QString content = file.readAll();
+        file.close();
+
+        this->generateRecent(fileName);
+
+        if(!editorMap.contains(fileKey))
+        {
+            CodeFile file = {fileKey, fileName, content, true};
+            editorMap.insert(fileKey, file);
+        }
+        else
+        {
+            editorMap[fileKey].url = fileName;
+            editorMap[fileKey].content = content;
+            editorMap[fileKey].saved = true;
+        }
+
+        ui->editorTab->addTab(newPage, fileKey);
+        ui->editorTab->setCurrentWidget(newPage);
+
+        int tabNum = ui->editorTab->count();
+        for(int i = 0; i < tabNum; i++)
+        {
+            if(ui->editorTab->tabText(i).remove("*") == "空文件")
+            {
+                this->removeTab(i);
+            }
+        }
+
+        this->generateFileTree(fileName);
+    }
+}
+
+void MainWindow::saveAsFile(QString fileName)
+{
+    if(!fileName.isNull())
+    {
+        QWidget* newPage = new QWidget();
+        QString fileKey = takeDir(fileName) + "/" + takeName(fileName);
+        QString content = ui->codeEditor->toPlainText();
+
+        QFile file(fileName);
+        file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text);
+        file.write(content.toUtf8());
+        file.close();
+
+        this->generateRecent(fileName);
+
+        if(!editorMap.contains(fileKey))
+        {
+            CodeFile file = {fileKey, fileName, content, true};
+            editorMap.insert(fileKey, file);
+        }
+        else
+        {
+            editorMap[fileKey].url = fileName;
+            editorMap[fileKey].content = content;
+            editorMap[fileKey].saved = true;
+        }
+
+        ui->editorTab->addTab(newPage, fileKey);
+        ui->editorTab->setCurrentWidget(newPage);
+
+        int tabNum = ui->editorTab->count();
+        for(int i = 0; i < tabNum; i++)
+        {
+            if(ui->editorTab->tabText(i).remove("*") == "空文件")
+            {
+                this->removeTab(i);
+            }
+        }
+
+        this->generateFileTree(fileName);
+    }
+}
+
 void MainWindow::generateFileTree(QString fileName)
 {
     QString aboveDir = takeDir(fileName);
@@ -354,11 +523,14 @@ void MainWindow::generateFileTree(QString fileName)
         rootItem = existList.at(0);
     }
 
-    QString filePath =  fileName.remove(takeName(fileName));
+    QString tempFileName = fileName;
+    QString filePath =  tempFileName.remove(takeName(fileName));
+
     QFileInfoList list = this->getFileList(filePath);
     for(QFileInfo & fileInfo : list)
     {
         QString name = fileInfo.fileName();
+        QString path = fileInfo.filePath();
 
         bool hasItem = false;
         QTreeWidgetItemIterator i(rootItem);
@@ -376,8 +548,47 @@ void MainWindow::generateFileTree(QString fileName)
         {
             QTreeWidgetItem* childItem = new QTreeWidgetItem();
             childItem->setText(0, name);
+            childItem->setData(1, Qt::DisplayRole, path);
             rootItem->addChild(childItem);
         }
+    }
+}
+
+void MainWindow::generateRecent(QString fileName)
+{
+    bool shouldAdd = true;
+    QMenu* menu = ui->actionRecent->menu();
+    for(QAction* action : menu->actions())
+    {
+        if(action->text() == fileName)
+        {
+            shouldAdd = false;
+            break;
+        }
+    }
+
+    if(shouldAdd)
+    {
+        QAction* action = new QAction(fileName);
+
+        connect(action, &QAction::triggered, [=]() {
+            QString selectedName = action->text();
+            QStringList tabList;
+            int tabNum = ui->editorTab->count();
+            for(int i = 0; i < tabNum; i++)
+            {
+                QString currentName = ui->editorTab->tabText(i).remove("*");
+                tabList << currentName;
+                if(selectedName == currentName)
+                {
+                    ui->editorTab->setCurrentIndex(i);
+                    return;
+                }
+            }
+            this->openFile(fileName);
+        });
+
+        menu->addAction(action);
     }
 }
 
@@ -389,6 +600,11 @@ UiStyle MainWindow::theme()
 QSettings *MainWindow::settings()
 {
     return this->setting;
+}
+
+QStringList MainWindow::keyList()
+{
+    return this->keywordList;
 }
 
 bool MainWindow::eventFilter(QObject* object, QEvent* event)
@@ -431,6 +647,12 @@ bool MainWindow::eventFilter(QObject* object, QEvent* event)
             {
                 QTextCursor cursor = ui->IOEditor->textCursor();
                 QString input = cursor.block().text() + "\n";
+                if(this->debuggerRunning)
+                {
+                    int gdbPos = input.indexOf("(gdb) ");
+                    int cutLength = gdbPos + QString("(gdb) ").length() - 1;
+                    input = input.right(input.length() - cutLength);
+                }
                 this->consoleProc->write(input.toUtf8().data());
             }
             break;
@@ -497,9 +719,29 @@ void MainWindow::closeEvent(QCloseEvent* event)
     Dialog dialog(this);
     dialog.setButtonText("确定", "取消");
     dialog.setInfo("即将退出GCode\n确定吗");
+
     int result = dialog.exec();
-    result == QDialog::Accepted ?
-    event->accept() : event->ignore();
+    if(result == QDialog::Accepted)
+    {
+        this->consoleProc->close();
+
+        QStringList recentList;
+        QList<QAction*> actionList = ui->actionRecent->menu()->actions();
+        if(!actionList.isEmpty())
+        {
+            for(QAction* action : actionList)
+            {
+                recentList << action->text();
+            }
+            QString recentStr = recentList.join("|");
+            this->setting->setValue("Recent/recent", recentStr);
+        }
+        event->accept();
+    }
+    else
+    {
+        event->ignore();
+    }
 }
 
 void MainWindow::switchStatus()
@@ -531,6 +773,14 @@ void MainWindow::switchStatus()
     }
 }
 
+void MainWindow::skipToLine(QString line)
+{
+    int lineNumber = line.toInt();
+    QTextCursor cursor(ui->codeEditor->document()->findBlockByLineNumber(lineNumber - 1));
+    ui->codeEditor->setTextCursor(cursor);
+    ui->codeEditor->centerCursor();
+}
+
 void MainWindow::removeTab(int index)
 {
     if(index == ui->editorTab->count() - 1)
@@ -559,7 +809,7 @@ void MainWindow::changeTabTo(int index)
     int lastIndex = this->currentPage;
     QString lastFile = ui->editorTab->tabText(lastIndex).remove("*");
     QString thisFile = ui->editorTab->tabText(index).remove("*");
-    QString content = ui->codeEditor->toHtml();
+    QString content = ui->codeEditor->toPlainText();
 
     if(editorMap.contains(lastFile))
     {
@@ -576,10 +826,34 @@ void MainWindow::changeTabTo(int index)
 
     if(editorMap.contains(thisFile))
     {
-        ui->codeEditor->setText(editorMap[thisFile].content);
+        ui->codeEditor->setPlainText(editorMap[thisFile].content);
     }
 
     ui->codeEditor->blockSignals(false);
+}
+
+void MainWindow::tagToFile(QTreeWidgetItem* item, int column)
+{
+    Q_UNUSED(column)
+    if(item->parent() != nullptr)
+    {
+        QString selectedName = item->parent()->text(0) + "/" + item->text(0);
+        QStringList tabList;
+
+        int tabNum = ui->editorTab->count();
+        for(int i = 0; i < tabNum; i++)
+        {
+            QString currentName = ui->editorTab->tabText(i).remove("*");
+            tabList << currentName;
+            if(selectedName == currentName)
+            {
+                ui->editorTab->setCurrentIndex(i);
+                return;
+            }
+        }
+
+        this->openFile(item->data(1, Qt::DisplayRole).toString());
+    }
 }
 
 void MainWindow::codeUnSave()
@@ -690,7 +964,7 @@ void MainWindow::processFR(QString str1, QString str2, int flag)
                 if(index != -1)
                 {
                     origin = origin.replace(index, str1.length(), str2);
-                    ui->codeEditor->setText(origin);
+                    ui->codeEditor->setPlainText(origin);
                 }
             }
             else
@@ -726,7 +1000,7 @@ void MainWindow::processFR(QString str1, QString str2, int flag)
 
             QString origin = ui->codeEditor->toPlainText();
             origin.replace(str1, str2, Qt::CaseSensitive);
-            ui->codeEditor->setText(origin);
+            ui->codeEditor->setPlainText(origin);
         }
         break;
     }
@@ -758,89 +1032,25 @@ void MainWindow::readError()
 void MainWindow::showNewFile()
 {
     QString fileName = QFileDialog::getSaveFileName(this, "新建文件");
-    //QFileDialog fileDialog(this);
-    //fileDialog.exec();
-
-    if(!fileName.isNull())
-    {
-        QWidget* newPage = new QWidget();
-        QString fileKey = takeDir(fileName) + "/" + takeName(fileName);
-
-        QFile file(fileName);
-        file.open(QIODevice::ReadWrite | QIODevice::Text);
-        QString content = file.readAll();
-        file.close();
-
-        if(!editorMap.contains(fileKey))
-        {
-            CodeFile file = {fileKey, fileName, content, true};
-            editorMap.insert(fileKey, file);
-        }
-        else
-        {
-            editorMap[fileKey].url = fileName;
-            editorMap[fileKey].content = content;
-            editorMap[fileKey].saved = true;
-        }
-
-        ui->editorTab->addTab(newPage, fileKey);
-        ui->editorTab->setCurrentWidget(newPage);
-
-        int tabNum = ui->editorTab->count();
-        for(int i = 0; i < tabNum; i++)
-        {
-            if(ui->editorTab->tabText(i) == "空文件")
-            {
-                this->removeTab(i);
-            }
-        }
-
-        this->generateFileTree(fileName);
-    }
+    this->newFile(fileName);
 }
 
 void MainWindow::showOpenFile()
 {
     QString fileName = QFileDialog::getOpenFileName(this, "打开文件");
-    //QFileDialog fileDialog(this);
-    //fileDialog.exec();
-
     if(!fileName.isNull())
     {
-        QWidget* newPage = new QWidget();
-        QString fileKey = takeDir(fileName) + "/" + takeName(fileName);
-
-        QFile file(fileName);
-        file.open(QIODevice::ReadOnly | QIODevice::Text);
-        QString content = file.readAll();
-        file.close();
-
-        if(!editorMap.contains(fileKey))
-        {
-            CodeFile file = {fileKey, fileName, content, true};
-            editorMap.insert(fileKey, file);
-        }
-        else
-        {
-            editorMap[fileKey].url = fileName;
-            editorMap[fileKey].content = content;
-            editorMap[fileKey].saved = true;
-        }
-
-        ui->editorTab->addTab(newPage, fileKey);
-        ui->editorTab->setCurrentWidget(newPage);
-
         int tabNum = ui->editorTab->count();
         for(int i = 0; i < tabNum; i++)
         {
-            if(ui->editorTab->tabText(i).remove("*") == "空文件")
+            if(ui->editorTab->tabText(i).remove("*") == QString(takeDir(fileName) + "/" + takeName(fileName)))
             {
-                this->removeTab(i);
+                ui->editorTab->setCurrentIndex(i);
+                return;
             }
         }
-
-        this->generateFileTree(fileName);
     }
+    this->openFile(fileName);
 }
 
 void MainWindow::save()
@@ -858,9 +1068,11 @@ void MainWindow::save()
             ui->editorTab->setTabText(this->currentPage, tabTitle);
 
             QString path = editorMap[tabTitle].url;
-            if(!path.endsWith(".c"))
+            QString suffix = QFileInfo(path).suffix();
+
+            if(!path.endsWith("." + suffix))
             {
-                path += ".c";
+                path += "." + suffix;
             }
 
             QFile file(path);
@@ -881,14 +1093,16 @@ void MainWindow::saveAll()
         ui->editorTab->setTabText(i, tabTitle);
 
         QString path = editorMap[tabTitle].url;
-        if(!path.endsWith(".c"))
+        QString suffix = QFileInfo(path).suffix();
+
+        if(!path.endsWith("." + suffix))
         {
-            path += ".c";
+            path += "." + suffix;
         }
 
         QFile file(path);
         file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text);
-        file.write(ui->codeEditor->toPlainText().toUtf8());
+        file.write(editorMap[tabTitle].content.toUtf8());
         file.close();
 
         editorMap[tabTitle].saved = true;
@@ -898,44 +1112,7 @@ void MainWindow::saveAll()
 void MainWindow::showSaveAs()
 {
     QString fileName = QFileDialog::getSaveFileName(this, "另存为");
-
-    if(!fileName.isNull())
-    {
-        QWidget* newPage = new QWidget();
-        QString fileKey = takeDir(fileName) + "/" + takeName(fileName);
-        QString content = ui->codeEditor->toPlainText();
-
-        QFile file(fileName);
-        file.open(QIODevice::ReadWrite | QIODevice::Truncate | QIODevice::Text);
-        file.write(content.toUtf8());
-        file.close();
-
-        if(!editorMap.contains(fileKey))
-        {
-            CodeFile file = {fileKey, fileName, content, true};
-            editorMap.insert(fileKey, file);
-        }
-        else
-        {
-            editorMap[fileKey].url = fileName;
-            editorMap[fileKey].content = content;
-            editorMap[fileKey].saved = true;
-        }
-
-        ui->editorTab->addTab(newPage, fileKey);
-        ui->editorTab->setCurrentWidget(newPage);
-
-        int tabNum = ui->editorTab->count();
-        for(int i = 0; i < tabNum; i++)
-        {
-            if(ui->editorTab->tabText(i).remove("*") == "空文件")
-            {
-                this->removeTab(i);
-            }
-        }
-
-        this->generateFileTree(fileName);
-    }
+    this->saveAsFile(fileName);
 }
 
 void MainWindow::closeFile()
@@ -1000,10 +1177,22 @@ void MainWindow::showFindReplace()
 
 void MainWindow::compile()
 {
-    QString compilerEXE = this->compilerPath + "/gcc.exe ";
-    QString sourceFile = editorMap[ui->editorTab->tabText(this->currentPage)].url;
-    QString targetFile = sourceFile.remove(".c");
-    QString compileCom = compilerEXE + sourceFile + ".c -o " + targetFile;
+    QString path = editorMap[ui->editorTab->tabText(this->currentPage)].url;
+    QString suffix = QFileInfo(path).suffix();
+
+    QString compilerEXE;
+    if(suffix == "c")
+    {
+        compilerEXE = this->compilerPath + "/gcc.exe ";
+    }
+    if(suffix == "cpp" || suffix == "h" || suffix == "hpp")
+    {
+        compilerEXE = this->compilerPath + "/g++.exe ";
+    }
+
+    QString sourceFile = path;
+    QString targetFile = sourceFile.remove("." + suffix);
+    QString compileCom = compilerEXE + sourceFile + "." + suffix + " -o " + targetFile;
 
     QStringList command;
     command << "/c" << compileCom;
@@ -1018,13 +1207,17 @@ void MainWindow::compile()
     this->consoleProc->waitForStarted();
     this->consoleProc->write(compileCom.toUtf8().data());
     this->consoleProc->waitForFinished();
+
+    ui->IOEditor->append("Compilation ended.\n");
 }
 
 void MainWindow::runCode()
 {
     this->compile();
 
-    QString exePath = editorMap[ui->editorTab->tabText(this->currentPage)].url.remove(".c") + ".exe";
+    QString path = editorMap[ui->editorTab->tabText(this->currentPage)].url;
+    QString suffix = QFileInfo(path).suffix();
+    QString exePath = path.remove("." + suffix) + ".exe";
 
     ui->IOEditor->append("Starting " + exePath + " ...\n");
     this->consoleProc->setProgram(exePath);
@@ -1037,7 +1230,46 @@ void MainWindow::runCode()
 
 void MainWindow::debug()
 {
+    QString path = editorMap[ui->editorTab->tabText(this->currentPage)].url;
+    QString suffix = QFileInfo(path).suffix();
 
+    QString compilerEXE;
+    if(suffix == "c")
+    {
+        compilerEXE = this->compilerPath + "/gcc.exe ";
+    }
+    if(suffix == "cpp" || suffix == "h" || suffix == "hpp")
+    {
+        compilerEXE = this->compilerPath + "/g++.exe ";
+    }
+
+    QString sourceFile = path;
+    QString targetFile = sourceFile.remove("." + suffix);
+    QString compileCom = compilerEXE + " -g " + sourceFile + "." + suffix + " -o " + targetFile;
+
+    QStringList command;
+    command << "/c" << compileCom;
+
+    ui->consoleTab->setCurrentWidget(ui->IOTab);
+    ui->IOEditor->append("Processing command: " + compileCom + " ...");
+
+    this->consoleProc->setProgram("cmd");
+    this->consoleProc->setArguments(command);
+    this->consoleProc->start();
+
+    this->consoleProc->waitForStarted();
+    this->consoleProc->write(compileCom.toUtf8().data());
+    this->consoleProc->waitForFinished();
+
+    QString exePath = path.remove("." + suffix) + ".exe";
+    QString debuggerEXE = this->compilerPath + "/gdb.exe ";
+    ui->IOEditor->append("Debugging " + exePath + " ...\n");
+    this->consoleProc->setProgram("cmd");
+    this->consoleProc->setArguments(QStringList() << "/c" << QString(debuggerEXE + exePath));
+    this->consoleProc->start();
+
+    this->consoleProc->waitForStarted();
+    this->debuggerRunning = true;
 }
 
 void MainWindow::stopCode()

@@ -28,6 +28,7 @@ class Slide;
 class QSettings;
 class QProcess;
 class Highlighter;
+class QTreeWidgetItem;
 
 class MainWindow : public QMainWindow
 {
@@ -58,10 +59,15 @@ public:
     QString takeDir(QString file);
     QFileInfoList getFileList(const QDir & dir);
 
+    void newFile(QString fileName);
+    void openFile(QString fileName);
+    void saveAsFile(QString fileName);
     void generateFileTree(QString fileName);
+    void generateRecent(QString fileName);
 
     UiStyle theme();
     QSettings* settings();
+    QStringList keyList();
 
 protected:
     bool eventFilter(QObject* object, QEvent* event) Q_DECL_OVERRIDE;
@@ -70,9 +76,11 @@ protected:
 
 protected slots:
     void switchStatus();
+    void skipToLine(QString line);
 
     void removeTab(int index);
     void changeTabTo(int index);
+    void tagToFile(QTreeWidgetItem* item, int column);
 
     void codeUnSave();
 
@@ -116,6 +124,7 @@ private:
 
     QString compilerPath;
     QProcess* consoleProc;
+    bool debuggerRunning;
 
     bool mouseDrag;
     QPoint mousePos;
@@ -128,5 +137,6 @@ private:
     QTextCharFormat oriColor;
 
     Highlighter* highlighter;
+    QStringList keywordList;
 };
 #endif // MAINWINDOW_H

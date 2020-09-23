@@ -23,21 +23,22 @@ struct HighlightingRule2
 class HIGHLIGHTER_EXPORT Highlighter : public QSyntaxHighlighter
 {
 public:
-    explicit Highlighter(QTextDocument* parent = nullptr);
+    explicit Highlighter(QTextDocument* parent = nullptr, QStringList keyList = QStringList());
 
-    inline void initKeyword();
+    inline void initKeyword(QStringList keyList);
     inline void initClass();
     inline void initSingleComment();
     inline void initMultiComment();
     inline void initQuotation();
     inline void initFunction();
+    inline void initNumber();
+    inline void initDefType();
 
 protected:
     void highlightBlock(const QString &text) Q_DECL_OVERRIDE;
 
 private:
     QVector<HighlightingRule> highlightingRules;
-    QVector<HighlightingRule2> highlightingRules2;
 
     QRegularExpression commentStartExpression;
     QRegularExpression commentEndExpression;
@@ -48,8 +49,8 @@ private:
     QTextCharFormat multiLineCommentFormat;
     QTextCharFormat quotationFormat;
     QTextCharFormat functionFormat;
-    QTextCharFormat keywordFormat2;
-    QTextCharFormat stringFormat;
+    QTextCharFormat numberFormat;
+    QTextCharFormat defTypeFormat;
 };
 
 #endif // HIGHLIGHTER_H

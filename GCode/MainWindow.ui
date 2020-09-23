@@ -677,7 +677,7 @@
    <property name="minimumSize">
     <size>
      <width>229</width>
-     <height>184</height>
+     <height>273</height>
     </size>
    </property>
    <property name="font">
@@ -717,87 +717,128 @@
      <property name="bottomMargin">
       <number>0</number>
      </property>
-     <property name="spacing">
+     <property name="horizontalSpacing">
       <number>0</number>
      </property>
-     <item row="0" column="0">
-      <widget class="QTabWidget" name="editorTab">
-       <property name="enabled">
-        <bool>true</bool>
+     <property name="verticalSpacing">
+      <number>10</number>
+     </property>
+     <item row="3" column="0">
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <property name="spacing">
+        <number>10</number>
        </property>
-       <property name="sizePolicy">
-        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
-         <horstretch>0</horstretch>
-         <verstretch>0</verstretch>
-        </sizepolicy>
-       </property>
-       <property name="font">
-        <font>
-         <family>微软雅黑</family>
-         <pointsize>10</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
-       </property>
-       <property name="currentIndex">
-        <number>0</number>
-       </property>
-       <property name="elideMode">
-        <enum>Qt::ElideNone</enum>
-       </property>
-       <property name="documentMode">
-        <bool>false</bool>
-       </property>
-       <property name="tabsClosable">
-        <bool>true</bool>
-       </property>
-       <property name="movable">
-        <bool>true</bool>
-       </property>
-       <property name="tabBarAutoHide">
-        <bool>false</bool>
-       </property>
-       <widget class="QWidget" name="codeView">
-        <attribute name="title">
-         <string>空文件</string>
-        </attribute>
-        <layout class="QGridLayout" name="gridLayout_7">
-         <property name="leftMargin">
-          <number>0</number>
+       <item>
+        <widget class="QLineEdit" name="skipEdit"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="skipLabel">
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Fixed" vsizetype="Fixed">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
          </property>
-         <property name="topMargin">
-          <number>0</number>
+         <property name="text">
+          <string>跳转至行</string>
          </property>
-         <property name="rightMargin">
-          <number>0</number>
+        </widget>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
          </property>
-         <property name="bottomMargin">
-          <number>0</number>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
          </property>
-         <property name="spacing">
-          <number>0</number>
-         </property>
-        </layout>
-       </widget>
-      </widget>
+        </spacer>
+       </item>
+      </layout>
      </item>
      <item row="1" column="0">
-      <widget class="QTextEdit" name="codeEditor">
-       <property name="font">
-        <font>
-         <family>Consolas</family>
-         <pointsize>12</pointsize>
-         <weight>50</weight>
-         <bold>false</bold>
-        </font>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <property name="spacing">
+        <number>0</number>
        </property>
-       <property name="lineWrapMode">
-        <enum>QTextEdit::NoWrap</enum>
-       </property>
-       <property name="tabStopDistance">
-        <double>40.000000000000000</double>
-       </property>
-      </widget>
+       <item>
+        <widget class="QTabWidget" name="editorTab">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="sizePolicy">
+          <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+           <horstretch>0</horstretch>
+           <verstretch>0</verstretch>
+          </sizepolicy>
+         </property>
+         <property name="font">
+          <font>
+           <family>微软雅黑</family>
+           <pointsize>10</pointsize>
+           <weight>50</weight>
+           <bold>false</bold>
+          </font>
+         </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <property name="elideMode">
+          <enum>Qt::ElideNone</enum>
+         </property>
+         <property name="documentMode">
+          <bool>false</bool>
+         </property>
+         <property name="tabsClosable">
+          <bool>true</bool>
+         </property>
+         <property name="movable">
+          <bool>true</bool>
+         </property>
+         <property name="tabBarAutoHide">
+          <bool>false</bool>
+         </property>
+         <widget class="QWidget" name="codeView">
+          <attribute name="title">
+           <string>空文件</string>
+          </attribute>
+          <layout class="QGridLayout" name="gridLayout_7">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <property name="spacing">
+            <number>0</number>
+           </property>
+          </layout>
+         </widget>
+        </widget>
+       </item>
+       <item>
+        <widget class="CodeEdit" name="codeEditor">
+         <property name="mouseTracking">
+          <bool>true</bool>
+         </property>
+         <property name="lineWrapMode">
+          <enum>QPlainTextEdit::NoWrap</enum>
+         </property>
+         <property name="tabStopDistance">
+          <double>44.000000000000000</double>
+         </property>
+        </widget>
+       </item>
+      </layout>
      </item>
     </layout>
    </widget>
@@ -857,7 +898,7 @@
         <enum>QTabWidget::South</enum>
        </property>
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <property name="documentMode">
         <bool>false</bool>
@@ -911,7 +952,14 @@
           <number>0</number>
          </property>
          <item row="0" column="0">
-          <widget class="QTextBrowser" name="errorBrowser"/>
+          <widget class="QTextBrowser" name="errorBrowser">
+           <property name="font">
+            <font>
+             <family>Consolas</family>
+             <pointsize>11</pointsize>
+            </font>
+           </property>
+          </widget>
          </item>
         </layout>
        </widget>
@@ -933,7 +981,7 @@
     <bool>true</bool>
    </property>
    <property name="windowTitle">
-    <string>toolBar</string>
+    <string>标题栏</string>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -953,7 +1001,7 @@
   </widget>
   <widget class="QToolBar" name="leftToolBar">
    <property name="windowTitle">
-    <string>toolBar_2</string>
+    <string>快捷栏</string>
    </property>
    <property name="movable">
     <bool>false</bool>
@@ -1281,6 +1329,13 @@
    </property>
   </action>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>CodeEdit</class>
+   <extends>QPlainTextEdit</extends>
+   <header>CodeEdit.h</header>
+  </customwidget>
+ </customwidgets>
  <resources>
   <include location="icons.qrc"/>
  </resources>
@@ -1292,11 +1347,11 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1114</x>
+     <x>1016</x>
      <y>102</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1114</x>
+     <x>1016</x>
      <y>102</y>
     </hint>
    </hints>
@@ -1308,11 +1363,11 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1115</x>
+     <x>1017</x>
      <y>172</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1115</x>
+     <x>1017</x>
      <y>172</y>
     </hint>
    </hints>
@@ -1324,11 +1379,11 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1117</x>
+     <x>1019</x>
      <y>257</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1117</x>
+     <x>1019</x>
      <y>257</y>
     </hint>
    </hints>
@@ -1340,11 +1395,11 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1116</x>
+     <x>1018</x>
      <y>357</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1116</x>
+     <x>1018</x>
      <y>357</y>
     </hint>
    </hints>
@@ -1356,11 +1411,11 @@
    <slot>showMenu()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1119</x>
+     <x>1021</x>
      <y>457</y>
     </hint>
     <hint type="destinationlabel">
-     <x>1119</x>
+     <x>1021</x>
      <y>457</y>
     </hint>
    </hints>
@@ -1372,7 +1427,7 @@
    <slot>showMinimized()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>551</x>
+     <x>525</x>
      <y>100</y>
     </hint>
     <hint type="destinationlabel">
@@ -1388,7 +1443,7 @@
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>551</x>
+     <x>525</x>
      <y>255</y>
     </hint>
     <hint type="destinationlabel">
@@ -1404,7 +1459,7 @@
    <slot>switchStatus()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>551</x>
+     <x>525</x>
      <y>172</y>
     </hint>
     <hint type="destinationlabel">
@@ -1420,8 +1475,8 @@
    <slot>removeTab(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>1589</x>
-     <y>126</y>
+     <x>1511</x>
+     <y>127</y>
     </hint>
     <hint type="destinationlabel">
      <x>799</x>
@@ -1750,22 +1805,6 @@
    </hints>
   </connection>
   <connection>
-   <sender>codeEditor</sender>
-   <signal>textChanged()</signal>
-   <receiver>MainWindow</receiver>
-   <slot>codeUnSave()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>1434</x>
-     <y>231</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>1191</x>
-     <y>111</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>actionCut</sender>
    <signal>triggered()</signal>
    <receiver>MainWindow</receiver>
@@ -1836,8 +1875,8 @@
    <slot>showOpenFile()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>803</x>
-     <y>229</y>
+     <x>757</x>
+     <y>272</y>
     </hint>
     <hint type="destinationlabel">
      <x>690</x>
@@ -1852,7 +1891,7 @@
    <slot>save()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>797</x>
+     <x>757</x>
      <y>337</y>
     </hint>
     <hint type="destinationlabel">
@@ -1868,8 +1907,8 @@
    <slot>saveAll()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>802</x>
-     <y>428</y>
+     <x>757</x>
+     <y>472</y>
     </hint>
     <hint type="destinationlabel">
      <x>643</x>
@@ -1884,7 +1923,7 @@
    <slot>showSaveAs()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>791</x>
+     <x>751</x>
      <y>556</y>
     </hint>
     <hint type="destinationlabel">
@@ -1941,6 +1980,54 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>codeEditor</sender>
+   <signal>textChanged()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>codeUnSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1434</x>
+     <y>302</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1216</x>
+     <y>301</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>skipEdit</sender>
+   <signal>textChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>skipToLine(QString)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>1335</x>
+     <y>580</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>1068</x>
+     <y>557</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>fileTree</sender>
+   <signal>itemDoubleClicked(QTreeWidgetItem*,int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>tagToFile(QTreeWidgetItem*,int)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>152</x>
+     <y>203</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>354</x>
+     <y>94</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>switchStatus()</slot>
@@ -1969,5 +2056,7 @@
   <slot>copy()</slot>
   <slot>paste()</slot>
   <slot>Delete()</slot>
+  <slot>skipToLine(QString)</slot>
+  <slot>tagToFile(QTreeWidgetItem*,int)</slot>
  </slots>
 </ui>

@@ -14,6 +14,15 @@ QWidget#dialogTitleBar
     background-color: rgb(190, 190, 190);
 }
 
+LineArea
+{
+    border: 0;
+    /*background-color: rgb(200, 200, 200);*/
+    background-color: rgb(250, 250, 250);
+    color: black;
+    font: bold 12pt "Consolas";
+}
+
 QSplitter::handle
 {
     background-color: rgb(222, 222, 222);
@@ -85,6 +94,11 @@ QToolButton
 QToolButton:hover
 {
     background-color: rgb(245, 245, 245);
+}
+
+QToolButton:disabled
+{
+    background-color: rgb(205, 205, 205);
 }
 
 QToolButton::menu-button
@@ -354,6 +368,15 @@ QTabBar::close-button:pressed
 }
 
 QTextEdit
+{
+    background-color: rgb(250, 250, 250);
+    color: black;
+    font-size: 12pt;
+    font-weight: normal;
+    border: 0;
+}
+
+QPlainTextEdit
 {
     background-color: rgb(250, 250, 250);
     color: black;

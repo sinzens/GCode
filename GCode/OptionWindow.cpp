@@ -197,6 +197,7 @@ void OptionWindow::confirmOption()
     parent->settings()->setValue("Edit/font", ui->fontComboBox->currentFont());
     parent->settings()->setValue("Edit/theme", ui->themeComboBox->currentText());
     parent->settings()->setValue("Compile/compiler", ui->compilerPath->text());
+
     this->optionConfirmed = true;
     this->applyOption();
     this->close();
